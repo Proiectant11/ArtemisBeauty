@@ -1,0 +1,52 @@
+﻿<Window x:Class="Proiect.LogWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Proiect"
+        mc:Ignorable="d"
+        Title="Artemis Beauty" Height="500" Width="400" 
+        Background="Black"
+        Icon="pack://application:,,,/Artemis .ico">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Image Grid.Column="0" Grid.Row="0" Source="Artemis.png" Grid.ColumnSpan="2" Margin="0,0,164,0" Height="157" VerticalAlignment="Top" Grid.RowSpan="2"/>
+        <!-- Title Section -->
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="Welcome Back!" 
+           FontSize="32" FontWeight="Bold" 
+           Foreground="#333" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,40,0,0"/>
+
+        <!-- Login Form Section -->
+        <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="0,20,0,0">
+            <!-- Username Field -->
+            <Border Height="40" Width="160" Margin="0,10" BorderBrush="#D1D1D1" BorderThickness="1" Style="{StaticResource RoundedInputStyle}">
+                <TextBox x:Name="EmailInput" Padding="10" Background="#FFFFFF" FontSize="14" Foreground="#888" Text="Email"
+                 Tag="Email" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus"/>
+            </Border>
+
+            <!-- Password Field -->
+            <Border Height="40" Width="160" Margin="0,10" BorderBrush="#D1D1D1" BorderThickness="1" Style="{StaticResource RoundedInputStyle}">
+                <PasswordBox x:Name="PasswordInput" Padding="10" Background="#FFFFFF" FontSize="14" Foreground="#888" Password="Password"
+                     Tag="Password" GotFocus="PasswordBox_GotFocus" LostFocus="PasswordBox_LostFocus"/>
+            </Border>
+
+            <!-- Login Button -->
+            <Button Content="Log In" Height="40" Width="160" Margin="0,20,0,0"
+            FontSize="16" Style="{StaticResource RoundedButtonStyle}" Click="Click_getAccount"/>
+        </StackPanel>
+
+        <!-- Footer Section -->
+        <TextBlock Grid.Row="2" Grid.Column="1" Text="Don't have an account? Sign Up"
+           FontSize="12" Foreground="#007AFF" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,20,0,0"
+           Cursor="Hand" MouseLeftButtonDown="CreateAccountButton_MouseLeftButtonDown"/>
+    </Grid>
+</Window>

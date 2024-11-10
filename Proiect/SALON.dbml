@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SALON" Class="SALONDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=WINDOWS-ANA\SQLEXPRESS;Initial Catalog=SALON;Integrated Security=True;Encrypt=False;Trust Server Certificate=True" SettingsObjectName="Proiect.Properties.Settings" SettingsPropertyName="SALONConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Angajati" Member="Angajatis">
+    <Type Name="Angajati">
+      <Column Name="ID_Angajat" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Nume" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Prenume" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Data_Nasterii" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Data_Angajarii" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Adresa" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="Oras" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Angajati_Angajati_Functii_Departamente" Member="Angajati_Functii_Departamentes" ThisKey="ID_Angajat" OtherKey="ID_Angajat" Type="Angajati_Functii_Departamente" />
+      <Association Name="Angajati_Programari" Member="Programaris" ThisKey="ID_Angajat" OtherKey="ID_Angajat" Type="Programari" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Angajati_Functii_Departamente" Member="Angajati_Functii_Departamentes">
+    <Type Name="Angajati_Functii_Departamente">
+      <Column Name="ID_Angajat" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ID_Functie" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ID_Departament" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Angajati_Angajati_Functii_Departamente" Member="Angajati" ThisKey="ID_Angajat" OtherKey="ID_Angajat" Type="Angajati" IsForeignKey="true" />
+      <Association Name="Departamente_Angajati_Functii_Departamente" Member="Departamente" ThisKey="ID_Departament" OtherKey="ID_departament" Type="Departamente" IsForeignKey="true" />
+      <Association Name="Functii_Angajati_Functii_Departamente" Member="Functii" ThisKey="ID_Functie" OtherKey="ID_Functie" Type="Functii" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Clienti" Member="Clientis">
+    <Type Name="Clienti">
+      <Column Name="ID_Client" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Nume" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Prenume" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Telefon" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Association Name="Clienti_Programari" Member="Programaris" ThisKey="ID_Client" OtherKey="ID_Client" Type="Programari" />
+      <Association Name="Clienti_Istoric_Clienti" Member="Istoric_Clientis" ThisKey="ID_Client" OtherKey="ID_Client" Type="Istoric_Clienti" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Departamente" Member="Departamentes">
+    <Type Name="Departamente">
+      <Column Name="ID_departament" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Denumire" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Departamente_Angajati_Functii_Departamente" Member="Angajati_Functii_Departamentes" ThisKey="ID_departament" OtherKey="ID_Departament" Type="Angajati_Functii_Departamente" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Servicii" Member="Serviciis">
+    <Type Name="Servicii">
+      <Column Name="ID_Serviciu" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Denumire" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Durata_aprox" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Pret" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Association Name="Servicii_Programari" Member="Programaris" ThisKey="ID_Serviciu" OtherKey="ID_Serviciu" Type="Programari" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Programari" Member="Programaris">
+    <Type Name="Programari">
+      <Column Name="ID_Programare" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ID_Client" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ID_Angajat" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ID_Serviciu" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Data_programare" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Durata" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Programari_Preferinte" Member="Preferintes" ThisKey="ID_Programare" OtherKey="ID_Programare" Type="Preferinte" />
+      <Association Name="Programari_Istoric_Clienti" Member="Istoric_Clientis" ThisKey="ID_Programare" OtherKey="ID_Programare" Type="Istoric_Clienti" />
+      <Association Name="Angajati_Programari" Member="Angajati" ThisKey="ID_Angajat" OtherKey="ID_Angajat" Type="Angajati" IsForeignKey="true" />
+      <Association Name="Clienti_Programari" Member="Clienti" ThisKey="ID_Client" OtherKey="ID_Client" Type="Clienti" IsForeignKey="true" />
+      <Association Name="Servicii_Programari" Member="Servicii" ThisKey="ID_Serviciu" OtherKey="ID_Serviciu" Type="Servicii" IsForeignKey="true" />
+      <Association Name="Servicii1_Programari" Member="Servicii1" ThisKey="ID_Serviciu" OtherKey="ID_Serviciu" Type="Servicii1" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Produse_Cosmetice" Member="Produse_Cosmetices">
+    <Type Name="Produse_Cosmetice">
+      <Column Name="ID_Produs" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Denumire" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CantitaeInStoc" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PretBucata" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Furnizor" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Preferinte" Member="Preferintes">
+    <Type Name="Preferinte">
+      <Column Name="ID_Preferinta" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ID_Programare" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Detalii_Preferinta" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Association Name="Programari_Preferinte" Member="Programari" ThisKey="ID_Programare" OtherKey="ID_Programare" Type="Programari" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Istoric_Clienti" Member="Istoric_Clientis">
+    <Type Name="Istoric_Clienti">
+      <Column Name="ID_Istoric" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ID_Client" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ID_Programare" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Clienti_Istoric_Clienti" Member="Clienti" ThisKey="ID_Client" OtherKey="ID_Client" Type="Clienti" IsForeignKey="true" />
+      <Association Name="Programari_Istoric_Clienti" Member="Programari" ThisKey="ID_Programare" OtherKey="ID_Programare" Type="Programari" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Functii" Member="Functiis">
+    <Type Name="Functii">
+      <Column Name="ID_Functie" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Denumire" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Functii_Angajati_Functii_Departamente" Member="Angajati_Functii_Departamentes" ThisKey="ID_Functie" OtherKey="ID_Functie" Type="Angajati_Functii_Departamente" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Servicii" Member="Servicii1s">
+    <Type Name="Servicii1">
+      <Column Name="ID_Serviciu" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Denumire" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Durata_aprox" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Pret" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Association Name="Servicii1_Programari" Member="Programaris" ThisKey="ID_Serviciu" OtherKey="ID_Serviciu" Type="Programari" />
+    </Type>
+  </Table>
+</Database>
