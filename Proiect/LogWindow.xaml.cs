@@ -24,9 +24,11 @@ namespace Proiect
     {
         string connectionString = ConfigurationManager.ConnectionStrings["salon"].ToString();
         SqlConnection connection = new SqlConnection();
-        public LogWindow()
+        private Window _parentWindow;
+        public LogWindow(Window parentWindow)
         {
             InitializeComponent();
+            _parentWindow = parentWindow;
             connection.ConnectionString = connectionString;
         }
 

@@ -8,14 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("u1.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("u2.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("u3.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("u4.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("u5.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("u6.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("u7.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("u8.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("u9.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("woman.png")]
 
 

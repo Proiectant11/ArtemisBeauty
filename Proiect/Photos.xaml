@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Proiect"
         mc:Ignorable="d"
-        Title="Photos" Height="500" Width="400"
+        Title="Photos" Height="500" Width="800"
         Background="Black"
         Icon="pack://application:,,,/Artemis .ico">
     <Grid>
@@ -13,35 +13,35 @@
             <TabItem Header="Coafor">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <WrapPanel Margin="10" Background="Black">
-                        <Image Source="c1.png" Width="100" Height="100" Margin="5"
+                        <Image Source="c1.png" Width="200" Height="200" Margin="5"
                                Stretch="UniformToFill" Style="{StaticResource ImageStyle}" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
-                        <Image Source="c2.png" Width="100" Height="100" Margin="5"
+                        <Image Source="c2.png" Width="200" Height="200" Margin="5"
                                 Stretch="UniformToFill" Style="{StaticResource ImageStyle}" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
-                        <Image Source="c3.png" Width="100" Height="100" Margin="5"
+                        <Image Source="c3.png" Width="200" Height="200" Margin="5"
                                 Stretch="UniformToFill" Style="{StaticResource ImageStyle}" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
-                        <Image Source="c4.png" Width="100" Height="100" Margin="5"
+                        <Image Source="c4.png" Width="200" Height="200" Margin="5"
                                 Stretch="UniformToFill" Style="{StaticResource ImageStyle}" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
-                        <Image Source="c5.png" Width="100" Height="100" Margin="5"
+                        <Image Source="c5.png" Width="200" Height="200" Margin="5"
                                 Stretch="UniformToFill" Style="{StaticResource ImageStyle}" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
-                        <Image Source="c6.png" Width="100" Height="100" Margin="5"
+                        <Image Source="c6.png" Width="200" Height="200" Margin="5"
                                 Stretch="UniformToFill" Style="{StaticResource ImageStyle}" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
-                        <Image Source="c15.png" Width="100" Height="100" Margin="5"
+                        <Image Source="c15.png" Width="200" Height="200" Margin="5"
                                 Stretch="UniformToFill" Style="{StaticResource ImageStyle}" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
-                        <Image Source="c7.png" Width="100" Height="100" Margin="5"
+                        <Image Source="c7.png" Width="200" Height="200" Margin="5"
                                 Stretch="UniformToFill" Style="{StaticResource ImageStyle}" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
-                        <Image Source="c8.png" Width="100" Height="100" Margin="5"
+                        <Image Source="c8.png" Width="200" Height="200" Margin="5"
                                 Stretch="UniformToFill" Style="{StaticResource ImageStyle}" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
-                        <Image Source="c9.png" Width="100" Height="100" Margin="5"
+                        <Image Source="c9.png" Width="200" Height="200" Margin="5"
                                 Stretch="UniformToFill" Style="{StaticResource ImageStyle}" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
-                        <Image Source="c10.png" Width="100" Height="100" Margin="5"
+                        <Image Source="c10.png" Width="200" Height="200" Margin="5"
                                 Stretch="UniformToFill" Style="{StaticResource ImageStyle}" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
-                        <Image Source="c11.png" Width="100" Height="100" Margin="5"
+                        <Image Source="c11.png" Width="200" Height="200" Margin="5"
                                 Stretch="UniformToFill" Style="{StaticResource ImageStyle}" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
-                        <Image Source="c12.png" Width="100" Height="100" Margin="5"
+                        <Image Source="c12.png" Width="200" Height="200" Margin="5"
                                 Stretch="UniformToFill" Style="{StaticResource ImageStyle}" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
-                        <Image Source="c13.png" Width="100" Height="100" Margin="5"
+                        <Image Source="c13.png" Width="200" Height="200" Margin="5"
                                 Stretch="UniformToFill" Style="{StaticResource ImageStyle}" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
-                        <Image Source="c14.png" Width="100" Height="100" Margin="5"
+                        <Image Source="c14.png" Width="200" Height="200" Margin="5"
                                 Stretch="UniformToFill" Style="{StaticResource ImageStyle}" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
                     </WrapPanel>
                 </ScrollViewer>
@@ -49,17 +49,17 @@
             <TabItem Header="Beauty">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <WrapPanel Margin="10" Background="Black">
-                        <Image Source="b1.png" Width="100" Height="100" Margin="5"
+                        <Image Source="b1.png" Width="200" Height="200" Margin="5"
                                Stretch="UniformToFill" Style="{StaticResource ImageStyle}" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
-                        <Image Source="b2.png" Width="100" Height="100" Margin="5"
+                        <Image Source="b2.png" Width="200" Height="200" Margin="5"
                                 Stretch="UniformToFill" Style="{StaticResource ImageStyle}" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
-                        <Image Source="b3.png" Width="100" Height="100" Margin="5"
+                        <Image Source="b3.png" Width="200" Height="200" Margin="5"
                                 Stretch="UniformToFill" Style="{StaticResource ImageStyle}" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
-                        <Image Source="b4.png" Width="100" Height="100" Margin="5"
+                        <Image Source="b4.png" Width="200" Height="200" Margin="5"
                                 Stretch="UniformToFill" Style="{StaticResource ImageStyle}" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
-                        <Image Source="b5.png" Width="100" Height="100" Margin="5"
+                        <Image Source="b5.png" Width="200" Height="200" Margin="5"
                                 Stretch="UniformToFill" Style="{StaticResource ImageStyle}" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
-                        <Image Source="b6.png" Width="100" Height="100" Margin="5"
+                        <Image Source="b6.png" Width="200" Height="200" Margin="5"
                                Stretch="UniformToFill" Style="{StaticResource ImageStyle}" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
                     </WrapPanel>
                 </ScrollViewer>
@@ -67,27 +67,54 @@
             <TabItem Header="Manicure">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <WrapPanel Margin="10" Background="Black">
-                        <Image Source="u1.png" Width="120" Height="170" Margin="5"
+                        <Image Source="u1.png" Width="200" Height="300" Margin="5"
                                 Stretch="UniformToFill" Style="{StaticResource ImageStyle}" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
-                        <Image Source="u2.png" Width="100" Height="170" Margin="5"
+                        <Image Source="u2.png" Width="200" Height="300"
                                  Stretch="UniformToFill" Style="{StaticResource ImageStyle}" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
-                        <Image Source="u3.png" Width="100" Height="170" Margin="5"
+                        <Image Source="u3.png" Width="200" Height="300"
                                 Stretch="UniformToFill" Style="{StaticResource ImageStyle}" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
-                        <Image Source="u4.png" Width="100" Height="170" Margin="5"
+                        <Image Source="u4.png" Width="200" Height="300" Margin="5"
                                 Stretch="UniformToFill" Style="{StaticResource ImageStyle}" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
-                        <Image Source="u5.png" Width="100" Height="170" Margin="5"
+                        <Image Source="u5.png" Width="200" Height="300" Margin="5"
                                 Stretch="UniformToFill" Style="{StaticResource ImageStyle}" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
-                        <Image Source="u6.png" Width="120" Height="170" Margin="5"
+                        <Image Source="u6.png" Width="200" Height="300"
                                 Stretch="UniformToFill" Style="{StaticResource ImageStyle}" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
-                        <Image Source="u8.png" Width="120" Height="170" Margin="5"
+                        <Image Source="u8.png" Width="200" Height="300" Margin="5"
                                 Stretch="UniformToFill" Style="{StaticResource ImageStyle}" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
-                        <Image Source="u9.png" Width="100" Height="170" Margin="5"
+                        <Image Source="u9.png" Width="200" Height="300" Margin="5"
                                Stretch="UniformToFill" Style="{StaticResource ImageStyle}" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
-                        <Image Source="u7.png" Width="100" Height="170"
+                        <Image Source="u7.png" Width="200" Height="300"
                                 Stretch="UniformToFill" Style="{StaticResource ImageStyle}" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
                     </WrapPanel>
                 </ScrollViewer>
             </TabItem>
         </TabControl>
+        <Grid Name="ImageOverlay" Background="#AA000000" Visibility="Collapsed">
+            <Image Name="LargeImage" HorizontalAlignment="Center" VerticalAlignment="Center"
+                   Stretch="Uniform" Margin="10"/>
+            <Button Content="X" Width="30" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top"
+                    Margin="10" Click="CloseOverlay_Click"/>
+            <Button Content="⟨" Width="50" Height="50" HorizontalAlignment="Left" VerticalAlignment="Center"
+                    Margin="10" Click="PrevButton_Click"/>
+            <Button Content="⟩" Width="50" Height="50" HorizontalAlignment="Right" VerticalAlignment="Center"
+                    Margin="10" Click="NextButton_Click"/>
+        </Grid>
+        <Button Click="BackButton_Click" RenderTransformOrigin="0.244,0.483" Margin="3,25,350,430">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-180.353"/>
+                    <TranslateTransform X="22.346" Y="-0.307"/>
+                </TransformGroup>
+            </Button.RenderTransform>
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <Path Fill="Gold" Data="M 0 0 L 10 10 L 0 20 Z" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Grid>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
     </Grid>
 </Window>

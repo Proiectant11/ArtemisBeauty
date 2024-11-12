@@ -26,9 +26,11 @@ namespace Proiect
     {
         string connectionString = ConfigurationManager.ConnectionStrings["salon"].ToString();
         SqlConnection connection = new SqlConnection();
-        public Prices()
+        private Window _parentWindow;
+        public Prices(Window parentWindow)
         {
             InitializeComponent();
+            _parentWindow = parentWindow;
             connection.ConnectionString = connectionString;
         }
         private void bt_coafor_Click(object sender, RoutedEventArgs e)
@@ -124,6 +126,12 @@ namespace Proiect
 
             connection.Close();
             listViewServicii.ItemsSource = serviciiList;
+        }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+           _parentWindow.Show();
+            this.Close();
         }
     }
 

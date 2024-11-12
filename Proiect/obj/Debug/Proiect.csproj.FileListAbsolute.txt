@@ -1,11 +1,12 @@
-C:\Users\anama\OneDrive\Desktop\Anul3\Aplicatii ale Bazelor de date\SALON INFRUMUSETARE\Proiect\Proiect\bin\Debug\Proiect.exe.config
 C:\Users\anama\OneDrive\Desktop\Anul3\Aplicatii ale Bazelor de date\SALON INFRUMUSETARE\Proiect\Proiect\bin\Debug\Proiect.exe
-C:\Users\anama\OneDrive\Desktop\Anul3\Aplicatii ale Bazelor de date\SALON INFRUMUSETARE\Proiect\Proiect\bin\Debug\Proiect.pdb
+C:\Users\anama\OneDrive\Desktop\Anul3\Aplicatii ale Bazelor de date\SALON INFRUMUSETARE\Proiect\Proiect\bin\Debug\Proiect.exe.config
 C:\Users\anama\OneDrive\Desktop\Anul3\Aplicatii ale Bazelor de date\SALON INFRUMUSETARE\Proiect\Proiect\bin\Debug\System.Configuration.ConfigurationManager.dll
 C:\Users\anama\OneDrive\Desktop\Anul3\Aplicatii ale Bazelor de date\SALON INFRUMUSETARE\Proiect\Proiect\bin\Debug\System.Configuration.ConfigurationManager.xml
 C:\Users\anama\OneDrive\Desktop\Anul3\Aplicatii ale Bazelor de date\SALON INFRUMUSETARE\Proiect\Proiect\obj\Debug\Proiect.csproj.AssemblyReference.cache
 C:\Users\anama\OneDrive\Desktop\Anul3\Aplicatii ale Bazelor de date\SALON INFRUMUSETARE\Proiect\Proiect\obj\Debug\LogWindow.g.cs
 C:\Users\anama\OneDrive\Desktop\Anul3\Aplicatii ale Bazelor de date\SALON INFRUMUSETARE\Proiect\Proiect\obj\Debug\MainWindow.g.cs
+C:\Users\anama\OneDrive\Desktop\Anul3\Aplicatii ale Bazelor de date\SALON INFRUMUSETARE\Proiect\Proiect\obj\Debug\Photos.g.cs
+C:\Users\anama\OneDrive\Desktop\Anul3\Aplicatii ale Bazelor de date\SALON INFRUMUSETARE\Proiect\Proiect\obj\Debug\Prices.g.cs
 C:\Users\anama\OneDrive\Desktop\Anul3\Aplicatii ale Bazelor de date\SALON INFRUMUSETARE\Proiect\Proiect\obj\Debug\SignInWindow.g.cs
 C:\Users\anama\OneDrive\Desktop\Anul3\Aplicatii ale Bazelor de date\SALON INFRUMUSETARE\Proiect\Proiect\obj\Debug\App.g.cs
 C:\Users\anama\OneDrive\Desktop\Anul3\Aplicatii ale Bazelor de date\SALON INFRUMUSETARE\Proiect\Proiect\obj\Debug\Proiect_MarkupCompile.cache
@@ -13,6 +14,8 @@ C:\Users\anama\OneDrive\Desktop\Anul3\Aplicatii ale Bazelor de date\SALON INFRUM
 C:\Users\anama\OneDrive\Desktop\Anul3\Aplicatii ale Bazelor de date\SALON INFRUMUSETARE\Proiect\Proiect\obj\Debug\App.baml
 C:\Users\anama\OneDrive\Desktop\Anul3\Aplicatii ale Bazelor de date\SALON INFRUMUSETARE\Proiect\Proiect\obj\Debug\LogWindow.baml
 C:\Users\anama\OneDrive\Desktop\Anul3\Aplicatii ale Bazelor de date\SALON INFRUMUSETARE\Proiect\Proiect\obj\Debug\MainWindow.baml
+C:\Users\anama\OneDrive\Desktop\Anul3\Aplicatii ale Bazelor de date\SALON INFRUMUSETARE\Proiect\Proiect\obj\Debug\Photos.baml
+C:\Users\anama\OneDrive\Desktop\Anul3\Aplicatii ale Bazelor de date\SALON INFRUMUSETARE\Proiect\Proiect\obj\Debug\Prices.baml
 C:\Users\anama\OneDrive\Desktop\Anul3\Aplicatii ale Bazelor de date\SALON INFRUMUSETARE\Proiect\Proiect\obj\Debug\SignInWindow.baml
 C:\Users\anama\OneDrive\Desktop\Anul3\Aplicatii ale Bazelor de date\SALON INFRUMUSETARE\Proiect\Proiect\obj\Debug\Proiect.g.resources
 C:\Users\anama\OneDrive\Desktop\Anul3\Aplicatii ale Bazelor de date\SALON INFRUMUSETARE\Proiect\Proiect\obj\Debug\Proiect.Properties.Resources.resources
@@ -21,9 +24,6 @@ C:\Users\anama\OneDrive\Desktop\Anul3\Aplicatii ale Bazelor de date\SALON INFRUM
 C:\Users\anama\OneDrive\Desktop\Anul3\Aplicatii ale Bazelor de date\SALON INFRUMUSETARE\Proiect\Proiect\obj\Debug\Proiect.csproj.Up2Date
 C:\Users\anama\OneDrive\Desktop\Anul3\Aplicatii ale Bazelor de date\SALON INFRUMUSETARE\Proiect\Proiect\obj\Debug\Proiect.exe
 C:\Users\anama\OneDrive\Desktop\Anul3\Aplicatii ale Bazelor de date\SALON INFRUMUSETARE\Proiect\Proiect\obj\Debug\Proiect.pdb
-C:\Users\anama\OneDrive\Desktop\Anul3\Aplicatii ale Bazelor de date\SALON INFRUMUSETARE\Proiect\Proiect\obj\Debug\Prices.g.cs
-C:\Users\anama\OneDrive\Desktop\Anul3\Aplicatii ale Bazelor de date\SALON INFRUMUSETARE\Proiect\Proiect\obj\Debug\Prices.baml
-C:\Users\anama\OneDrive\Desktop\Anul3\Aplicatii ale Bazelor de date\SALON INFRUMUSETARE\Proiect\Proiect\obj\Debug\Photos.g.cs
-C:\Users\anama\OneDrive\Desktop\Anul3\Aplicatii ale Bazelor de date\SALON INFRUMUSETARE\Proiect\Proiect\obj\Debug\Photos.baml
-C:\Users\anama\OneDrive\Desktop\Anul3\Aplicatii ale Bazelor de date\SALON INFRUMUSETARE\Proiect\Proiect\obj\Debug\ImageWindow.g.cs
-C:\Users\anama\OneDrive\Desktop\Anul3\Aplicatii ale Bazelor de date\SALON INFRUMUSETARE\Proiect\Proiect\obj\Debug\ImageWindow.baml
+C:\Users\anama\OneDrive\Desktop\Anul3\Aplicatii ale Bazelor de date\SALON INFRUMUSETARE\Proiect\Proiect\bin\Debug\Proiect.pdb
+C:\Users\anama\OneDrive\Desktop\Anul3\Aplicatii ale Bazelor de date\SALON INFRUMUSETARE\Proiect\Proiect\obj\Debug\ClientWindow.g.cs
+C:\Users\anama\OneDrive\Desktop\Anul3\Aplicatii ale Bazelor de date\SALON INFRUMUSETARE\Proiect\Proiect\obj\Debug\ClientWindow.baml

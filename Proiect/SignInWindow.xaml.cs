@@ -24,6 +24,7 @@ namespace Proiect
     {
         string connectionString = ConfigurationManager.ConnectionStrings["salon"].ToString();
         SqlConnection connection = new SqlConnection();
+        int genre;//0-femeie, 1--barbat
         public SignInWindow()
         {
             InitializeComponent();
@@ -71,7 +72,7 @@ namespace Proiect
 
         private void LogInAccountButton_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            LogWindow log_window = new LogWindow();
+            LogWindow log_window = new LogWindow(this);
             log_window.Left = this.Left;
             log_window.Top = this.Top;
             log_window.Show();
@@ -102,7 +103,7 @@ namespace Proiect
                 {
                     var insertCommand= connection.CreateCommand();
                     insertCommand.CommandType= CommandType.Text;
-                    insertCommand.CommandText= "INSERT INTO Clienti (Nume, Prenume, Email, Telefon, Parola) VALUES (@Nume, @Prenume, @Email, @Telefon, @Parola)";
+                    insertCommand.CommandText= "INSERT INTO Clienti (Nume, Prenume, Email, Telefon, Parola, Gen) VALUES (@Nume, @Prenume, @Email, @Telefon, @Parola, @Gen)";
                     insertCommand.Parameters.AddWithValue("@Email", EmailInput.Text);
                     insertCommand.Parameters.AddWithValue("@Nume", FirstNameInput.Text);
                     insertCommand.Parameters.AddWithValue("@Prenume", LastNameInput.Text);
@@ -117,17 +118,22 @@ namespace Proiect
                         connection.Close();
                         return;
                     }
+                    if(this.genre==0)
+                    {
+                        insertCommand.Parameters.AddWithValue("@Gen", "F");
+                    }
+                    else
+                    {
+                        insertCommand.Parameters.AddWithValue("@Gen", "M");
+                    }
                     int rowsAffected = insertCommand.ExecuteNonQuery();
 
                     if (rowsAffected > 0)
                     {
                         MessageBox.Show("Account created successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                         connection.Close();
-                        MainWindow mainWindow = new MainWindow();
-                        mainWindow.Left = this.Left;
-                        mainWindow.Top = this.Top;
-                        mainWindow.Show();
                         this.Close();
+                       
                     }
                     else
                     {
@@ -144,6 +150,16 @@ namespace Proiect
                     "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
+        }
+
+        private void cb_woman_Checked(object sender, RoutedEventArgs e)
+        {
+            this.genre = 0;
+        }
+
+        private void cb_man_Checked(object sender, RoutedEventArgs e)
+        {
+            this.genre = 1;
         }
     }
 }

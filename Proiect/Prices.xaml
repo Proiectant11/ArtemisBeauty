@@ -5,31 +5,31 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Proiect"
         mc:Ignorable="d"
-        Title="Prices" Height="500" Width="400" 
+        Title="Prices" Height="500" Width="800" 
         Background="Black"
         Icon="pack://application:,,,/Artemis .ico">
     <Grid>
         <Button x:Name="bt_coafor" Content="Hair" HorizontalAlignment="Left"  VerticalAlignment="Top" Click="bt_coafor_Click"
-                Style="{StaticResource RoundedButtonStyle}" Margin="21,43,0,0" Height="30" Width="52"/>
-        <Button x:Name="bt_manicure" Content="Manicure" HorizontalAlignment="Left" Margin="87,43,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.928,0.483"
-                Style="{StaticResource RoundedButtonStyle}" Height="30" Width="61" Click="bt_manicure_Click"/>
-        <Button x:Name="bt_pedicure" Content="Pedicure" HorizontalAlignment="Left" Margin="169,43,0,0" VerticalAlignment="Top"
-                Style="{StaticResource RoundedButtonStyle}" Height="30" Width="59" Click="bt_pedicure_Click"/>
-        <Button x:Name="bt_beauty" Content="Beauty" HorizontalAlignment="Left" Margin="252,43,0,0" VerticalAlignment="Top" RenderTransformOrigin="3.18,4.17"
-                Style="{StaticResource RoundedButtonStyle}" Height="30" Width="50" Click="bt_beauty_Click"/>
-        <Button x:Name="bt_massage" Content="Massage" HorizontalAlignment="Left" Margin="320,43,0,0" VerticalAlignment="Top"
-                Style="{StaticResource RoundedButtonStyle}" Height="30" Width="61" Click="bt_massage_Click"/>
-        <ListView Name="listViewServicii" Margin="10,121,10,55" Background="Black" Foreground="White" BorderBrush="White" BorderThickness="1">
+                Style="{StaticResource RoundedButtonStyle}" Margin="69,106,0,0" Height="40" Width="90" RenderTransformOrigin="0.412,1.195"/>
+        <Button x:Name="bt_manicure" Content="Manicure" HorizontalAlignment="Left" Margin="523,105,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.928,0.483"
+                Style="{StaticResource RoundedButtonStyle}" Height="40" Width="90" Click="bt_manicure_Click"/>
+        <Button x:Name="bt_pedicure" Content="Pedicure" HorizontalAlignment="Left" Margin="672,106,0,0" VerticalAlignment="Top"
+                Style="{StaticResource RoundedButtonStyle}" Height="40" Width="90" Click="bt_pedicure_Click"/>
+        <Button x:Name="bt_beauty" Content="Beauty" HorizontalAlignment="Left" Margin="208,105,0,0" VerticalAlignment="Top" RenderTransformOrigin="3.18,4.17"
+                Style="{StaticResource RoundedButtonStyle}" Height="40" Width="90" Click="bt_beauty_Click"/>
+        <Button x:Name="bt_massage" Content="Massage" HorizontalAlignment="Left" Margin="368,105,0,0" VerticalAlignment="Top"
+                Style="{StaticResource RoundedButtonStyle}" Height="40" Width="90" Click="bt_massage_Click"/>
+        <ListView Name="listViewServicii" Margin="10,166,10,10" Background="Black" Foreground="White" BorderBrush="White" BorderThickness="1" d:ItemsSource="{d:SampleData ItemCount=5}">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Denumire" DisplayMemberBinding="{Binding Key}" Width="320">
+                    <GridViewColumn Header="Service" DisplayMemberBinding="{Binding Key}" Width="700">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Key}" Style="{StaticResource WhiteTextStyle}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="Pret" DisplayMemberBinding="{Binding Value}" Width="50">
+                    <GridViewColumn Header="Price" DisplayMemberBinding="{Binding Value}" Width="50">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Value}" Style="{StaticResource WhiteTextStyle}"/>
@@ -48,6 +48,24 @@
                 </Style>
             </ListView.ItemContainerStyle>
         </ListView>
+        <Button Click="BackButton_Click" RenderTransformOrigin="1.045,0.55" Margin="-58,11,751,433">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-180.353"/>
+                    <TranslateTransform X="-58.874" Y="-5.024"/>
+                </TransformGroup>
+            </Button.RenderTransform>
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <Path Fill="Gold" Data="M 0 0 L 10 10 L 0 20 Z" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Grid>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Image Source="Artemis.png" HorizontalAlignment="Left" Height="100" Margin="130,0,0,0" VerticalAlignment="Top" Width="155"/>
 
     </Grid>
 </Window>
