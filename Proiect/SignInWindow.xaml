@@ -6,88 +6,91 @@
         xmlns:local="clr-namespace:Proiect"
         mc:Ignorable="d"
         Title="Artemis Beauty" Height="600" Width="700" 
-        Background="Black"
-        Icon="pack://application:,,,/Artemis .ico">
-    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-        <Grid>
-            <!-- Definim structura rândurilor și coloanelor -->
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+        Background="#1E1E2E"
+        Icon="pack://application:,,,/Poze/Artemis .ico">
 
-            <!-- Imaginea Artemis din stânga sus -->
-            <Image Grid.Row="0" Grid.Column="0" Source="Artemis.png" Height="130" Width="143" Margin="10,10,0,0" VerticalAlignment="Top"/>
+    <Grid>
+        <!-- Definim structura rândurilor și coloanelor -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
-            <!-- Titlul principal -->
-            <TextBlock Grid.Row="0" Grid.Column="1" Text="Welcome to our site!" FontSize="32" FontWeight="Bold" 
-               Foreground="#333" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,20,0,0"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
-            <!-- Subtitlul principal -->
-            <TextBlock Grid.Column="1" Text="Choose your genre and enjoy the experience!" FontSize="16" FontWeight="Bold" 
-               Foreground="#333" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="6,75,0,0"/>
+        <!-- Imaginea Artemis din stânga sus -->
+        <Image Grid.Column="0" Source="/Poze/Artemis3.png" Height="100" Width="110" Margin="22,15,218,0" VerticalAlignment="Top" Grid.RowSpan="2"/>
 
-            <!-- Imagini pentru genuri -->
-            <Image Source="man.png" Grid.Column="1" HorizontalAlignment="Left" Height="100" Margin="229,0,0,0" VerticalAlignment="Top" Width="100" Grid.Row="1"/>
-            <Image Source="woman.png" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Height="100" Margin="10,0,0,0" VerticalAlignment="Top" Width="100"/>
+        <!-- Titlul principal -->
+        <TextBlock Grid.Row="0" Text="Welcome to our site!" FontSize="32" FontWeight="Bold" 
+           Foreground="#FFD700" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="207,15,0,0" Grid.ColumnSpan="2"/>
 
-            <!-- Checkbox-uri pentru genuri -->
-            <CheckBox x:Name="cb_woman" Content="Woman" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Margin="37,123,0,0" VerticalAlignment="Top" Height="29" Width="22" RenderTransformOrigin="1.027,0.345" Checked="cb_woman_Checked"/>
-            <CheckBox x:Name="cb_man" Content="Man" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Margin="279,123,0,0" VerticalAlignment="Top" Height="46" Width="22" RenderTransformOrigin="1.027,0.345" Checked="cb_man_Checked" Grid.RowSpan="2"/>
+        <!-- Subtitlul principal -->
+        <TextBlock Grid.Column="0" Text="Choose your genre and enjoy the experience!" FontSize="16" FontWeight="Bold" 
+           Foreground="#FFD700" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="185,63,0,0" Grid.ColumnSpan="2"/>
 
-            <!-- Titlul formularului de creare cont -->
-            <TextBlock Grid.Row="2" Grid.Column="1" Text="Create Your Account" 
-               FontSize="16" FontWeight="Bold" 
-               Foreground="#333" VerticalAlignment="Top" HorizontalAlignment="Center" Height="42" Width="160" Margin="0,20,0,0"/>
+        <!-- Imagini pentru genuri -->
+        <Image Source="Poze/man.png" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" Height="70" Margin="222,11,0,0" VerticalAlignment="Top" Width="70"/>
+        <Image Source="Poze/woman.png" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Height="70" Margin="62,11,0,0" VerticalAlignment="Top" Width="70"/>
 
-            <!-- Formularul de creare cont -->
-            <StackPanel Grid.Row="3" Grid.Column="1" VerticalAlignment="Top" Height="Auto">
-                <!-- Câmpurile formularului -->
-                <Border Height="40" Width="160" Margin="0,10" BorderBrush="#D1D1D1" BorderThickness="1" Style="{StaticResource RoundedInputStyle}">
-                    <TextBox x:Name="FirstNameInput" Padding="10" Background="#FFFFFF" FontSize="12" Foreground="#888" Text="First Name"
+        <!-- Checkbox-uri pentru genuri -->
+        <CheckBox x:Name="cb_woman" Content="Woman" Grid.Row="1" HorizontalAlignment="Left" Margin="86,96,0,0" VerticalAlignment="Top" Height="29" Width="22" Checked="cb_woman_Checked" RenderTransformOrigin="8.393,-1.774" Grid.Column="1"/>
+        <CheckBox x:Name="cb_man" Content="Man" Grid.Row="1" HorizontalAlignment="Left" Margin="246,96,0,0" VerticalAlignment="Top" Height="28" Width="22" Checked="cb_man_Checked" RenderTransformOrigin="-3.391,-0.516"/>
+
+        <!-- Titlul formularului de creare cont -->
+        <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="Create Your Account" FontSize="16" FontWeight="Bold" 
+           Foreground="#FFD700" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="273,157,0,0" RenderTransformOrigin="0.529,-1.41"/>
+
+        <!-- Formularul de creare cont -->
+        <StackPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10,10,10,0">
+            <!-- Câmpurile formularului -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Border Height="50" Width="150" Margin="10,10" BorderBrush="#D1D1D1" BorderThickness="1" Style="{StaticResource RoundedInputStyle}">
+                    <TextBox x:Name="FirstNameInput" Padding="10" Background="#3A3A3A" FontSize="12" Foreground="White" Text="First Name"
                      Tag="First Name" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" TextChanged="TextBox_TextChanged"/>
                 </Border>
-
-                <Border Height="40" Width="160" Margin="0,10" BorderBrush="#D1D1D1" BorderThickness="1" Style="{StaticResource RoundedInputStyle}">
-                    <TextBox x:Name="LastNameInput" Padding="10" Background="#FFFFFF" FontSize="12" Foreground="#888" Text="Last Name"
+                <Border Height="50" Width="150" Margin="10,10" BorderBrush="#D1D1D1" BorderThickness="1" Style="{StaticResource RoundedInputStyle}">
+                    <TextBox x:Name="LastNameInput" Padding="10" Background="#3A3A3A" FontSize="12" Foreground="White" Text="Last Name"
                      Tag="Last Name" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus"/>
                 </Border>
+            </StackPanel>
 
-                <Border Height="40" Width="160" Margin="0,10" BorderBrush="#D1D1D1" BorderThickness="1" Style="{StaticResource RoundedInputStyle}">
-                    <TextBox x:Name="EmailInput" Padding="10" Background="#FFFFFF" FontSize="12" Foreground="#888" Text="Email"
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Border Height="50" Width="150" Margin="10,10" BorderBrush="#D1D1D1" BorderThickness="1" Style="{StaticResource RoundedInputStyle}">
+                    <TextBox x:Name="EmailInput" Padding="10" Background="#3A3A3A" FontSize="12" Foreground="White" Text="Email"
                      Tag="Email" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus"/>
                 </Border>
-
-                <Border Height="40" Width="160" Margin="0,10" BorderBrush="#D1D1D1" BorderThickness="1" Style="{StaticResource RoundedInputStyle}">
-                    <TextBox x:Name="PhoneNumberInput" Padding="10" Background="#FFFFFF" FontSize="12" Foreground="#888" Text="Phone Number"
+                <Border Height="50" Width="150" Margin="10,10" BorderBrush="#D1D1D1" BorderThickness="1" Style="{StaticResource RoundedInputStyle}">
+                    <TextBox x:Name="PhoneNumberInput" Padding="10" Background="#3A3A3A" FontSize="12" Foreground="White" Text="Phone Number"
                      Tag="Phone Number" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus"/>
                 </Border>
+            </StackPanel>
 
-                <Border Height="40" Width="160" Margin="0,10" BorderBrush="#D1D1D1" BorderThickness="1" Style="{StaticResource RoundedInputStyle}">
-                    <PasswordBox x:Name="FirstPasswordInput" Padding="10" Background="#FFFFFF" FontSize="12" Foreground="#888" Password="Password"
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Border Height="50" Width="150" Margin="10,10" BorderBrush="#D1D1D1" BorderThickness="1" Style="{StaticResource RoundedInputStyle}">
+                    <PasswordBox x:Name="FirstPasswordInput" Padding="10" Background="#3A3A3A" FontSize="12" Foreground="White" Password="Password"
                          Tag="Password" GotFocus="PasswordBox_GotFocus" LostFocus="PasswordBox_LostFocus"/>
                 </Border>
-
-                <Border Height="40" Width="160" Margin="0,10" BorderBrush="#D1D1D1" BorderThickness="1" Style="{StaticResource RoundedInputStyle}">
-                    <PasswordBox x:Name="SecondPasswordInput" Padding="10" Background="#FFFFFF" FontSize="12" Foreground="#888" Password="Confirm Password"
+                <Border Height="50" Width="150" Margin="10,10" BorderBrush="#D1D1D1" BorderThickness="1" Style="{StaticResource RoundedInputStyle}">
+                    <PasswordBox x:Name="SecondPasswordInput" Padding="10" Background="#3A3A3A" FontSize="12" Foreground="White" Password="Confirm Password"
                          Tag="Confirm Password" GotFocus="PasswordBox_GotFocus" LostFocus="PasswordBox_LostFocus"/>
                 </Border>
-
-                <!-- Butonul de înregistrare -->
-                <Button x:Name="CreateAccountButton" Content="Sign Up" Height="40" Width="160" Margin="0,20,0,0"
-                FontSize="16" Style="{StaticResource RoundedButtonStyle}" Click="CreateAccount"/>
-
-                <!-- Text pentru a merge la Logare -->
-                <TextBlock x:Name="LogInButton" Text="Have an account? Log In" FontSize="12" Foreground="#007AFF"
-                   Cursor="Hand" MouseLeftButtonDown="LogInAccountButton_MouseLeftButtonDown" HorizontalAlignment="Center" Margin="0,10"/>
             </StackPanel>
-        </Grid>
-    </ScrollViewer>
+
+            <!-- Butonul de înregistrare -->
+            <Button x:Name="CreateAccountButton" Content="Sign Up" Height="40" Width="300" Margin="20,20,20,10"
+            FontSize="16" Style="{StaticResource RoundedButtonStyle}" Click="CreateAccount"/>
+
+            <!-- Text pentru a merge la Logare -->
+            <TextBlock x:Name="LogInButton" Text="Have an account? Log In" FontSize="12" Foreground="#007AFF"
+               Cursor="Hand" MouseLeftButtonDown="LogInAccountButton_MouseLeftButtonDown" HorizontalAlignment="Center" Margin="0,10"/>
+        </StackPanel>
+    </Grid>
 </Window>
+
+

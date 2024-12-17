@@ -1,0 +1,81 @@
+﻿<Window x:Class="Proiect.AdminWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Proiect"
+        mc:Ignorable="d"
+        Title="Admin Window" Height="600" Width="800"
+        Background="#1E1E2E"
+         Icon="pack://application:,,,/Poze/Artemis .ico">
+    <Window.Resources>
+        <!-- Stiluri butoane similare -->
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#3E3E4F"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <!-- Logo -->
+        <Image Source="Poze/Artemis3.png" HorizontalAlignment="Left" Height="130" Margin="27,10,0,0" VerticalAlignment="Top" Width="170" Opacity="0.6"/>
+
+        <!-- Meniu lateral -->
+        <StackPanel Name="MenuPanel" VerticalAlignment="Top" HorizontalAlignment="Left" Width="200" Background="#2D2D3B" 
+                    Margin="10,150,0,0">
+            <Button Content="Manage Employees" Style="{StaticResource ButtonStyle}" Click="ManageEmployees_Click" />
+            <Button Content="Manage Products" Style="{StaticResource ButtonStyle}" Click="ManageProducts_Click" />
+            <Button Content="Log Out" Style="{StaticResource ButtonStyle}" Background="#C43F3F" Click="Logout_Click" />
+        </StackPanel>
+
+        <!-- Panoul de gestionare angajați -->
+        <StackPanel x:Name="EmployeePanel" Margin="236,20,10,20" Background="#2D2D3B" Visibility="Collapsed">
+            <TextBlock Text="Manage Employees" FontSize="20" Foreground="White" Margin="0,0,0,20" TextAlignment="Center" />
+
+            <!-- Form pentru a adăuga un angajat -->
+            <Button Content="Add Employee" Style="{StaticResource ButtonStyle}" Click="AddEmployee_Click" Margin="10"/>
+            <Button Content="Delete Employee" Style="{StaticResource ButtonStyle}" Click="DeleteEmployee_Click" Margin="10"/>
+
+            <!-- ListBox pentru a afisa angajatii -->
+            <TextBlock Text="Employees List:" FontSize="14" Foreground="White" Margin="20,10,0,5"/>
+            <ListBox x:Name="EmployeeListBox" Width="400" Height="288" Margin="0,10"/>
+        </StackPanel>
+
+        <!-- Panoul de gestionare produse -->
+        <StackPanel x:Name="ProductsPanel" Margin="230,20,20,4" Visibility="Collapsed" Background="#2D2D3B">
+            <TextBlock Text="Manage Products" FontSize="20" Foreground="White" Margin="0,0,0,20" TextAlignment="Center" />
+
+            <!-- ListBox pentru a afisa produsele disponibile -->
+            <ListBox x:Name="ProductsListBox" Width="400" Height="200" Margin="0,10" SelectionMode="Single">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Denumire}" Foreground="Black" />
+                            <TextBlock Text="{Binding PretBucata}" Foreground="Black" />
+                            <TextBlock Text="{Binding CantitateInStoc}" Foreground="Black" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+            <TextBlock Text="New Quantity:" FontSize="14" Foreground="White" Margin="0,5"/>
+            <TextBox x:Name="QuantityTextBox" FontSize="14" Background="White" Foreground="Black" Margin="0,5"/>
+
+            <Button Content="Update Product Stock" Style="{StaticResource ButtonStyle}" Click="UpdateProductStock_Click" />
+        </StackPanel>
+    </Grid>
+</Window>

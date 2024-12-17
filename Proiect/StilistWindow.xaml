@@ -1,0 +1,180 @@
+﻿<Window x:Class="Proiect.StilistWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Proiect"
+        mc:Ignorable="d"
+        Title="StilistWindow" Height="500" Width="800"
+        Background="#1E1E2E"
+        Icon="pack://application:,,,/Poze/Artemis .ico">
+    <Window.Resources>
+        <!-- Stiluri butoane similare -->
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#3E3E4F"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <!-- Logo -->
+        <Image Source="Poze/Artemis3.png" HorizontalAlignment="Left" Height="130" Margin="27,10,0,0" VerticalAlignment="Top" Width="170" Opacity="0.6"/>
+
+
+        <!-- Meniu lateral -->
+        <StackPanel Name="MenuPanel" VerticalAlignment="Top" HorizontalAlignment="Left" Width="200" Background="#2D2D3B" 
+                    Margin="10,150,0,0">
+            <Button Content="Appointments" Style="{StaticResource ButtonStyle}" Click="Appointments_Click" />
+            <Button Content="Manage Products" Style="{StaticResource ButtonStyle}" Click="Products_Click" />
+            <Button Content="Profile" Style="{StaticResource ButtonStyle}" Click="Profile_Click" />
+            <Button Content="Log Out" Style="{StaticResource ButtonStyle}" Background="#C43F3F" Click="Logout_Click" />
+        </StackPanel>
+
+        <!-- Panoul de gestionare programări -->
+        <StackPanel x:Name="AppointmentPanel" Margin="236,20,10,20" Background="#2D2D3B" Visibility="Collapsed">
+            <TextBlock Text="Appointments" FontSize="18" Foreground="White" Margin="0,10" HorizontalAlignment="Center" />
+
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Height="360" Width="544">
+                <ItemsControl x:Name="AppointmentsList" Width="540">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="#FFD700" BorderThickness="1" Margin="0,5" Padding="10" Background="#3E3E4F">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                                    <!-- Detalii programare -->
+                                    <StackPanel Orientation="Vertical" Width="300">
+                                        <TextBlock Text="{Binding Denumire}" FontSize="14" Foreground="White" />
+                                        <TextBlock Text="{Binding DataProgramare}" FontSize="14" Foreground="White" />
+                                        <TextBlock Text="{Binding Ora}" FontSize="14" Foreground="White" />
+                                        <TextBlock Text="{Binding NumeAngajat}" FontSize="14" Foreground="White" />
+                                        <TextBlock Text="{Binding Preferinte}" FontSize="14" Foreground="White" />
+                                    </StackPanel>
+
+                                    <!-- Butoane -->
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
+                                        <Button Content="Cancel" Width="80" Height="30" Margin="5" 
+                                        Background="#C43F3F" Foreground="White"
+                                        Click="CancelAppointment_Click" Tag="{Binding}" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </StackPanel>
+
+
+
+        <!-- Panoul de gestionare produse -->
+        <StackPanel x:Name="ProductsPanel" Margin="230,10,20,4" Visibility="Collapsed" Background="#2D2D3B">
+            <TextBlock Text="Manage Products" FontSize="20" Foreground="White" Margin="0,0,0,20" TextAlignment="Center" />
+
+            <!-- ListBox pentru a afisa produsele disponibile -->
+            <ListBox x:Name="ProductsListBox" Width="400" Height="178" Margin="0,10" SelectionMode="Multiple">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Denumire}" Foreground="Black" />
+                            <TextBlock Text="{Binding PretBucata}" Foreground="Black" />
+                            <TextBlock Text="{Binding CantitateInStoc}" Foreground="Black" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+            <TextBlock Text="Quantity:" FontSize="14" Foreground="White" Margin="0,5" Height="22" Width="533" />
+            <TextBox x:Name="QuantityTextBox" FontSize="14" Background="White" Foreground="Black" Margin="0,5" />
+
+            <Button Content="Add Product to Selection" Style="{StaticResource ButtonStyle}" Click="AddProductToSelection_Click" />
+            <Button Content="Save Selected Products" Style="{StaticResource ButtonStyle}" Click="SaveSelectedProducts_Click" Margin="10,10,10,0" />
+
+            <!-- ListBox pentru a afisa produsele selectate -->
+            <TextBlock Text="Selected Products:" FontSize="14" Foreground="White" Margin="20,10,0,5" />
+            <ListBox x:Name="SelectedProductsListBox" Width="400" Height="69" Margin="0,10" />
+        </StackPanel>
+
+
+
+
+        <!-- Panoul pentru profil -->
+        <StackPanel x:Name="ProfilePanel" Margin="230,20,20,0" Visibility="Collapsed" Background="#2D2D3B">
+            <!-- Grid pentru titlu și butoane -->
+            <Grid Margin="0,0,0,20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <!-- Coloană pentru titlu -->
+                    <ColumnDefinition Width="Auto"/>
+                    <!-- Coloană pentru butoane -->
+                </Grid.ColumnDefinitions>
+
+                <!-- Titlu Profil -->
+                <TextBlock Text="Profile Information" FontSize="20" Foreground="White" Grid.Column="0" VerticalAlignment="Center" />
+
+                <!-- Butoane Edit și Save -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1">
+                    <Button x:Name="EditButton" Content="Edit" Width="80" Height="30" Background="#4CAF50" Foreground="White" Click="EditButton_Click" Margin="5"/>
+                    <Button x:Name="SaveButton" Content="Save" Width="80" Height="30" Background="#4CAF50" Foreground="White" Click="SaveButton_Click" Margin="5" Visibility="Collapsed"/>
+                </StackPanel>
+            </Grid>
+
+            <!-- Grid cu două coloane și 7 rânduri -->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- First Name -->
+                <TextBlock Text="First Name:" FontSize="14" Foreground="White" Margin="0,5" Grid.Row="0" Grid.Column="0"/>
+                <TextBox x:Name="StylistFirstNameTextBox" FontSize="14" Background="White" Foreground="Black" IsReadOnly="True" Grid.Row="0" Grid.Column="1" Width="250" Margin="5"/>
+
+                <!-- Last Name -->
+                <TextBlock Text="Last Name:" FontSize="14" Foreground="White" Margin="0,5" Grid.Row="1" Grid.Column="0"/>
+                <TextBox x:Name="StylistLastNameTextBox" FontSize="14" Background="White" Foreground="Black" IsReadOnly="True" Grid.Row="1" Grid.Column="1" Width="250" Margin="5"/>
+
+                <!-- Email -->
+                <TextBlock Text="Email:" FontSize="14" Foreground="White" Margin="0,5" Grid.Row="2" Grid.Column="0"/>
+                <TextBox x:Name="StylistEmailTextBox" FontSize="14" Background="White" Foreground="Black" IsReadOnly="True" Grid.Row="2" Grid.Column="1" Width="250" Margin="5"/>
+
+                <!-- Birth Date -->
+                <TextBlock Text="Birth Date:" FontSize="14" Foreground="White" Margin="0,5" Grid.Row="3" Grid.Column="0"/>
+                <TextBox x:Name="StylistBirthDateTextBox" FontSize="14" Background="White" Foreground="Black" IsReadOnly="True" Grid.Row="3" Grid.Column="1" Width="250" Margin="5"/>
+
+                <!-- Address -->
+                <TextBlock Text="Address:" FontSize="14" Foreground="White" Margin="0,5" Grid.Row="4" Grid.Column="0"/>
+                <TextBox x:Name="StylistAddressTextBox" FontSize="14" Background="White" Foreground="Black" IsReadOnly="True" Grid.Row="4" Grid.Column="1" Width="250" Margin="5"/>
+
+                <!-- City -->
+                <TextBlock Text="City:" FontSize="14" Foreground="White" Margin="0,5" Grid.Row="5" Grid.Column="0"/>
+                <TextBox x:Name="StylistCityTextBox" FontSize="14" Background="White" Foreground="Black" IsReadOnly="True" Grid.Row="5" Grid.Column="1" Width="250" Margin="5"/>
+
+                <!-- Hiring Date -->
+                <TextBlock Text="Hiring Date:" FontSize="14" Foreground="White" Margin="0,5" Grid.Row="6" Grid.Column="0"/>
+                <TextBox x:Name="StylistHiringDateTextBox" FontSize="14" Background="White" Foreground="Black" IsReadOnly="True" Grid.Row="6" Grid.Column="1" Width="250" Margin="5"/>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Window>

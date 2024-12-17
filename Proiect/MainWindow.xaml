@@ -6,81 +6,50 @@
         xmlns:local="clr-namespace:Proiect"
         mc:Ignorable="d"
         Title="Artemis Beauty" Height="500" Width="800"
-        Background="Black"
-        Icon="pack://application:,,,/Artemis .ico">
+        Background="#1E1E2E"
+        Icon="pack://application:,,,/Poze/Artemis .ico">
     <Grid>
+        <!-- Row Definitions: Row for buttons and Row for content -->
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <!-- For buttons -->
             <RowDefinition Height="*"/>
+            <!-- For main content -->
         </Grid.RowDefinitions>
 
+        <!-- Navigation Bar (Buttons) -->
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="bt_home" Grid.Column="0" Content="Home" Click="Home_Click" FontFamily="Times New Roman" Foreground="White" Background="Transparent" />
-            <Button x:Name="bt_prices" Grid.Column="1" Content="Prices" Click="Prices_Button" FontFamily="Times New Roman" Foreground="White" Background="Transparent" />
-            <Button x:Name="bt_shedule" Grid.Column="2" Content="Schedule" Click="Shedule_Click" FontFamily="Times New Roman" Foreground="White" Background="Transparent"/>
-            <Button x:Name="bt_review" Grid.Column="3" Content="Reviews" Click="Review_Click" FontFamily="Times New Roman" Foreground="White" Background="Transparent"/>
-            <Button x:Name="bt_photos" Grid.Column="4" Content="Photos" Click="Photos_Click" FontFamily="Times New Roman" Foreground="White" Background="Transparent"/>
-            <Button x:Name="bt_contact" Grid.Column="5" Content="Contact" Click="Contact_Click" FontFamily="Times New Roman" Foreground="White" Background="Transparent"/>
-            <Button x:Name="bt_log" Grid.Column="6" Content="Admin" Click="Log_Click" FontFamily="Times New Roman" Foreground="White" Background="Transparent" />
+
+            <Button x:Name="bt_home" Grid.Column="0" Content="Home" Click="Home_Click" FontFamily="Times New Roman" Foreground="White" Background="Transparent" HorizontalAlignment="Center"/>
+            <Button x:Name="bt_prices" Grid.Column="1" Content="Prices" Click="Prices_Button" FontFamily="Times New Roman" Foreground="White" Background="Transparent" HorizontalAlignment="Center"/>
+            <Button x:Name="bt_shedule" Grid.Column="2" Content="Schedule" Click="Shedule_Click" FontFamily="Times New Roman" Foreground="White" Background="Transparent" HorizontalAlignment="Center"/>
+            <Button x:Name="bt_review" Grid.Column="3" Content="Reviews" Click="Review_Click" FontFamily="Times New Roman" Foreground="White" Background="Transparent" HorizontalAlignment="Center"/>
+            <Button x:Name="bt_photos" Grid.Column="4" Content="Photos" Click="Photos_Click" FontFamily="Times New Roman" Foreground="White" Background="Transparent" HorizontalAlignment="Center"/>
+            <Button x:Name="bt_contact" Grid.Column="5" Content="Contact" Click="Contact_Click" FontFamily="Times New Roman" Foreground="White" Background="Transparent" HorizontalAlignment="Center"/>
+            <Button x:Name="bt_log" Grid.Column="6" Content="Admin" Click="Log_Click" FontFamily="Times New Roman" Foreground="White" Background="Transparent" HorizontalAlignment="Center"/>
         </Grid>
-        <ScrollViewer x:Name="MainScrollViewer" Grid.Row="1">
-            <StackPanel>
-                <StackPanel x:Name="Home" Margin=" 0,0,0,20">
-                    <Image Height="203" Width="314" Stretch="Uniform" Source="/Artemis.png" RenderTransformOrigin="0.32,0.543"/>
-                    <TextBlock Foreground="White" TextWrapping="Wrap" FontSize="14" HorizontalAlignment="Center" Margin="20" FontFamily="Times New Roman" FontStyle="Italic">
-                        <Run Text="         &#x2666; Hairdresser &#x2666; Manicure &#x2666; Pedicure"/>
-                        <LineBreak/>
-                        <Run Text="&#x2666; Beauty &#x2666; Haircuts &#x2666; Therapeutic Massage"/>
-                    </TextBlock>
-                </StackPanel>
-                <StackPanel x:Name="Contact" Background="Black" Margin="10,10,10,20">
-                    <TextBlock Foreground="White" TextWrapping="Wrap" FontSize="20" HorizontalAlignment="Center" Margin="20">
-                        <Run Text="CONTACT"/>
-                        <LineBreak/>
-                    </TextBlock>
-                    <TextBlock Foreground="White" TextWrapping="Wrap" FontSize="14" HorizontalAlignment="Center" Margin="20" FontFamily="Times New Roman" FontWeight="Bold">
-                    <Run Text="Tel/Whatsapp:0756.663.740"/>
+
+        <!-- Main Content -->
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20">
+            <!-- Home StackPanel -->
+            <StackPanel x:Name="Home" Margin="0,20,0,20">
+                <Image Height="203" Width="314" Stretch="Uniform" Source="/Poze/Artemis3.png" RenderTransformOrigin="0.32,0.543"/>
+                <TextBlock Foreground="White" TextWrapping="Wrap" FontSize="14" FontFamily="Times New Roman" FontStyle="Italic" TextAlignment="Center" Margin="20">
+                    <Run Text="♦ Hairdresser ♦ Manicure ♦ Pedicure"/>
                     <LineBreak/>
-                    <Run Text="Address:Aron Cotrus Street 61A, Bucharest"/>
-                    <LineBreak/>
-                    </TextBlock>
-                </StackPanel>
-                <StackPanel x:Name="Review" Margin="20,20,20,20">
-                    <TextBlock Foreground="White" TextWrapping="Wrap" FontSize="20" HorizontalAlignment="Center" Margin="20">
-                        <Run Text="REVIEW"/>
-                        <LineBreak/>
-                    </TextBlock>
-                    <ListView x:Name="ReviewList" Background="Black" Foreground="White" BorderBrush="White" BorderThickness="1" >
-                        <ListView.View>
-                            <GridView>
-                                <GridViewColumn Header="Client" DisplayMemberBinding="{Binding Key}" Width="320">
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <TextBlock Text="{Binding Key}" Style="{StaticResource WhiteTextStyle}"/>
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
-                                <GridViewColumn Header="Review" DisplayMemberBinding="{Binding Value}" Width="50">
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <TextBlock Text="{Binding Value}" Style="{StaticResource WhiteTextStyle}"/>
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
-                </StackPanel>
+                    <Run Text="♦ Beauty ♦ Haircuts ♦ Therapeutic Massage"/>
+                </TextBlock>
             </StackPanel>
-        </ScrollViewer>
+        </StackPanel>
     </Grid>
 </Window>
+

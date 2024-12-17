@@ -60,18 +60,29 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddEmployeeWindow.xaml.cs">
+      <DependentUpon>AddEmployeeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AdminWindow.xaml.cs">
+      <DependentUpon>AdminWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ClientWindow.xaml.cs">
       <DependentUpon>ClientWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="LogWindow.xaml.cs">
       <DependentUpon>LogWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PaymentPage.xaml.cs">
+      <DependentUpon>PaymentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentService.cs" />
     <Compile Include="Photos.xaml.cs">
       <DependentUpon>Photos.xaml</DependentUpon>
     </Compile>
     <Compile Include="Prices.xaml.cs">
       <DependentUpon>Prices.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ProgramariDetaliate.cs" />
     <Compile Include="SALON.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -80,6 +91,17 @@
     <Compile Include="SignInWindow.xaml.cs">
       <DependentUpon>SignInWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="StilistWindow.xaml.cs">
+      <DependentUpon>StilistWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="AddEmployeeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdminWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ClientWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -100,6 +122,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="PaymentPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Photos.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -109,6 +135,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SignInWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StilistWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -152,52 +182,121 @@
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Artemis.png" />
+    <Resource Include="Poze\Artemis .ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Artemis .ico" />
+    <Resource Include="Poze\Artemis3.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="c1.png" />
-    <Resource Include="c10.png" />
-    <Resource Include="c11.png" />
-    <Resource Include="c12.png" />
-    <Resource Include="c13.png" />
-    <Resource Include="c14.png" />
-    <Resource Include="c15.png" />
-    <Resource Include="c2.png" />
-    <Resource Include="c3.png" />
-    <Resource Include="c4.png" />
-    <Resource Include="c5.png" />
-    <Resource Include="c6.png" />
-    <Resource Include="c7.png" />
-    <Resource Include="c8.png" />
-    <Resource Include="c9.png" />
+    <Resource Include="Poze\b1.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="b1.png" />
-    <Resource Include="b2.png" />
-    <Resource Include="b3.png" />
-    <Resource Include="b4.png" />
-    <Resource Include="b5.png" />
-    <Resource Include="b6.png" />
+    <Resource Include="Poze\b2.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="u1.png" />
-    <Resource Include="u2.png" />
-    <Resource Include="u3.png" />
-    <Resource Include="u4.png" />
-    <Resource Include="u5.png" />
-    <Resource Include="u6.png" />
-    <Resource Include="u7.png" />
-    <Resource Include="u8.png" />
-    <Resource Include="u9.png" />
+    <Resource Include="Poze\b3.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="man.png" />
+    <Resource Include="Poze\b4.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="woman.png" />
+    <Resource Include="Poze\b5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Poze\b6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Poze\c1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Poze\c10.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Poze\c11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Poze\c12.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Poze\c13.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Poze\c14.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Poze\c15.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Poze\c2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Poze\c3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Poze\c4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Poze\c5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Poze\c6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Poze\c7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Poze\c8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Poze\c9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Poze\coafor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Poze\cosmetica.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Poze\man.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Poze\manichiura.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Poze\masaj.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Poze\pedichiura.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Poze\u1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Poze\u2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Poze\u3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Poze\u4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Poze\u5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Poze\u6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Poze\u7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Poze\u8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Poze\u9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Poze\woman.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

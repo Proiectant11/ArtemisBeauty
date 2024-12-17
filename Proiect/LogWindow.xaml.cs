@@ -22,14 +22,13 @@ namespace Proiect
     /// </summary>
     public partial class LogWindow : Window
     {
-        string connectionString = ConfigurationManager.ConnectionStrings["salon"].ToString();
-        SqlConnection connection = new SqlConnection();
+        private SALONDataContext db = new SALONDataContext(); 
         private Window _parentWindow;
+
         public LogWindow(Window parentWindow)
         {
             InitializeComponent();
             _parentWindow = parentWindow;
-            connection.ConnectionString = connectionString;
         }
 
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
@@ -83,24 +82,19 @@ namespace Proiect
 
         private void Click_getAccount(object sender, RoutedEventArgs e)
         {
-            string query = "SELECT COUNT(1) FROM Clienti WHERE Email=@Email AND Parola=@Parola";
-            try
+            if (ClientRadioButton.IsChecked == true)
             {
-                connection.Open();
-                using (SqlCommand command = new SqlCommand(query, connection))
+                try
                 {
-                    command.Parameters.AddWithValue("@Email", EmailInput.Text);
-                    command.Parameters.AddWithValue("@Parola", PasswordInput.Password);
+                    var client = db.Clientis.FirstOrDefault(c => c.Email == EmailInput.Text && c.Parola == PasswordInput.Password);
 
-                    int count = (int)command.ExecuteScalar();
-
-                    if (count == 1)
+                    if (client != null)
                     {
-                        //PAGINA PRINCIPALA 
-                        //Dashboard dashboardWindow = new Dashboard();
-                        //dashboardWindow.Left = this.Left;
-                        //dashboardWindow.Top = this.Top;
-                        //dashboardWindow.Show();
+
+                        ClientWindow page = new ClientWindow(client);
+                        page.Top = this.Top;
+                        page.Left = this.Left;
+                        page.Show();
                         this.Close();
                     }
                     else
@@ -108,13 +102,66 @@ namespace Proiect
                         MessageBox.Show("Invalid email or password.", "Authentication Failed", MessageBoxButton.OK, MessageBoxImage.Warning);
                     }
                 }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Database error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
-            catch (SqlException ex)
+            else if (AdminRadioButton.IsChecked == true)
             {
-                MessageBox.Show("Database error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                try
+                {
+                    if(EmailInput.Text =="admin@ab.ro" && PasswordInput.Password =="admin")
+                    {
+                        var angajat = db.Angajatis.FirstOrDefault(a => a.Email == EmailInput.Text && a.Parola == PasswordInput.Password);
+                        if (angajat != null)
+                        {
+                            AdminWindow page = new AdminWindow();
+                            page.Top = this.Top;
+                            page.Left = this.Left;
+                            page.Show();
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Admin doesn't exist.", "Authentication Failed", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Invalid email or password.", "Authentication Failed", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Database error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
-            
-
+            else if (StilistRadioButton.IsChecked == true)
+            {
+                try
+                {
+                    var angajat = db.Angajatis.FirstOrDefault(a => a.Email == EmailInput.Text && a.Parola == PasswordInput.Password);
+                    if (angajat != null)
+                    {
+                        StilistWindow page = new StilistWindow(angajat);
+                        page.Top = this.Top;
+                        page.Left = this.Left;
+                        page.Show();
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Invalid email or password.", "Authentication Failed", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Database error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
         }
+
     }
+    
 }

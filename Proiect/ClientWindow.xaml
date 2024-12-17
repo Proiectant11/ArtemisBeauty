@@ -6,9 +6,254 @@
         xmlns:local="clr-namespace:Proiect"
         mc:Ignorable="d"
         Title="ClientWindow" Height="500" Width="800"
-        Background="Black"
-        Icon="pack://application:,,,/Artemis .ico">
+        Background="#1E1E2E"
+        Icon="pack://application:,,,/Poze/Artemis .ico">
+
+    <Window.Resources>
+        <!-- Stil pentru butoane -->
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#3E3E4F"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1" 
+                        CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+        <!-- Stil pentru buton cu hover (animatie) -->
+        <Style x:Key="HoverButtonStyle" TargetType="Button">
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="Button.MouseEnter">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)" 
+                                             To="1.1" Duration="0:0:0.2" AutoReverse="True"/>
+                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)" 
+                                             To="1.1" Duration="0:0:0.2" AutoReverse="True"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
     <Grid>
+        <!-- Logo -->
+        <Image Source="Poze/Artemis3.png" HorizontalAlignment="Left" Height="130" Margin="30,20,0,0" VerticalAlignment="Top" Width="170" />
+
+        <!-- Profil utilizator -->
+        <Image x:Name="image_user" HorizontalAlignment="Right" Height="72" Margin="0,20,30,0" VerticalAlignment="Top" Width="72" />
+        <TextBlock x:Name="tb_nume" HorizontalAlignment="Right" Margin="0,104,45,0" TextWrapping="Wrap" 
+                   Text="Utilizator" VerticalAlignment="Top" FontSize="14" Foreground="White" />
+
+        <!-- Meniul Hamburger -->
+        <Grid x:Name="HamburgerMenu" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20,20,0,0">
+            <Button Name="HamburgerButton" Width="40" Height="40" Background="Transparent" BorderBrush="Transparent"
+                    ToolTip="Deschide Meniu" Click="HamburgerButton_Click">
+                <StackPanel>
+                    <Rectangle Height="4" Width="30" Fill="White" Margin="0,4,0,4" />
+                    <Rectangle Height="4" Width="30" Fill="White" Margin="0,4,0,4" />
+                    <Rectangle Height="4" Width="30" Fill="White" Margin="0,4,0,4" />
+                </StackPanel>
+            </Button>
+        </Grid>
+
+        <!-- Meniul Lateral cu umbra -->
+        <StackPanel Name="MenuPanel" VerticalAlignment="Top" HorizontalAlignment="Left" Width="200" Background="#2D2D3B" 
+                    Visibility="Collapsed" Margin="0,70,0,0">
+            <StackPanel.Effect>
+                <DropShadowEffect Color="Black" Direction="270" ShadowDepth="5" BlurRadius="10"/>
+            </StackPanel.Effect>
+            <Button Content="Schedules" Style="{StaticResource ButtonStyle}" Click="Programari_Click" />
+            <Button Content="Services" Style="{StaticResource ButtonStyle}" Click="Servicii_Click" />
+            <Button Content="Profil" Style="{StaticResource ButtonStyle}" Click="Profil_Click" />
+            <Button Content="Log out" Style="{StaticResource ButtonStyle}" Background="#C43F3F" Foreground="White" Click="Logout_Click" />
+        </StackPanel>
+
+        <!-- Text central -->
+        <TextBlock x:Name="WelcomeMessage" Text="Welcome to our site!" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                   FontSize="28" Foreground="White" FontWeight="Bold" TextAlignment="Center" />
+
+        <!-- Panel pentru programari cu umbra -->
+            <StackPanel x:Name="AppointmentPanel" Margin="20" Width="460" Height="760" Visibility="Collapsed" Background="#2D2D3B">
+                <Grid Margin="0,5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <!-- Coloana pentru titlu -->
+                        <ColumnDefinition Width="Auto" />
+                        <!-- Coloana pentru buton -->
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Titlu -->
+                    <TextBlock Text="Make your schedule" FontSize="18" Foreground="White" 
+                           HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="0" />
+
+                    <!-- Buton Confirmare -->
+                    <Button Content="✔" Width="30" Height="30" Background="Green" Foreground="White"
+                        BorderBrush="Transparent" HorizontalAlignment="Right" VerticalAlignment="Center" 
+                        Grid.Column="1" Click="ConfirmAppointment_Click">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border Background="{TemplateBinding Background}"
+                                                CornerRadius="5" Width="30" Height="30">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </Grid> 
+
+                <!-- Selectare Tip Programare -->
+                <TextBlock Text="Select the schedule type:" FontSize="14" Foreground="White" Margin="0,5" />
+                <ComboBox x:Name="AppointmentTypeComboBox" SelectionChanged="AppointmentTypeComboBox_SelectionChanged" 
+                  Background="White" Margin="0,5" />
+
+                <!-- Selectare Serviciu -->
+                <TextBlock Text="Select the service:" FontSize="14" Foreground="White" Margin="0,5" />
+                <ComboBox x:Name="ServiceComboBox" Background="White" Margin="0,5" SelectionChanged="ServiceComboBox_SelectionChanged"/>
+
+                <!-- Selectare Dată -->
+                <TextBlock Text="Select the date:" FontSize="14" Foreground="White" Margin="0,5" />
+                <DatePicker x:Name="AppointmentDatePicker" Margin="0,5"/>
+
+                <!-- Selectare Angajat -->
+                <TextBlock Text="Select the employee:" FontSize="14" Foreground="White" Margin="0,5" />
+                <ComboBox x:Name="EmployeeComboBox" Background="White" Margin="0,5" SelectionChanged="EmployeeComboBox_SelectionChanged"/>
+
+                <!-- Selectare Oră -->
+                <TextBlock Text="Select the hour:" FontSize="14" Foreground="White" Margin="0,5" />
+                <ComboBox x:Name="TimeComboBox" Background="White" Margin="0,5" />
+
+                <!-- Titlu -->
+                <TextBlock Text="Enter Your Preferences" FontSize="16" Foreground="White" 
+           HorizontalAlignment="Center" Margin="0,0,0,10" />
+
+                <!-- TextBox pentru preferințe -->
+            <TextBox x:Name="PreferencesTextBox" FontSize="14" Background="White" Foreground="Black" 
+         Height="30" Padding="5" Margin="0,0,0,10" />
+        </StackPanel>
+
         
+        <!-- Listă Programări -->
+        <StackPanel x:Name="AppointmentsListPanel" Margin="20" Width="460" Height="760" Visibility="Collapsed" Background="#2D2D3B">
+            <TextBlock Text="Your Appointments" FontSize="16" Foreground="White" Margin="0,5" TextAlignment="Center" />
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Height="360">
+                <ItemsControl x:Name="AppointmentsList" Margin="10">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="#FFD700" BorderThickness="1" Margin="0,5" Padding="10" Background="#3E3E4F">
+                                <StackPanel>
+                                    <TextBlock Text="{Binding Denumire}" FontSize="14" Foreground="White" />
+                                    <TextBlock Text="{Binding DataProgramare}" FontSize="14" Foreground="White" />
+                                    <TextBlock Text="{Binding Ora}" FontSize="14" Foreground="White" />
+                                    <TextBlock Text="{Binding Preferinte}" FontSize="14" Foreground="White" />
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </StackPanel>
+
+        <!-- ScrollViewer pentru profil -->
+        <ScrollViewer x:Name="ProfileScrollViewer" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
+                      Margin="10" Width="400" Height="400" Padding="10">
+            <StackPanel x:Name="ProfilePanel" Visibility="Collapsed" Background="#2D2D3B" Margin="0" Width="350" MinHeight="400">
+                <!-- Titlu Profil -->
+                <TextBlock Text="Profile Information" FontSize="16" Foreground="White" Margin="0,10" HorizontalAlignment="Center" />
+
+                <!-- Nume -->
+                <TextBlock Text="FirstName:" FontSize="14" Foreground="White" Margin="0,5" />
+                <TextBox x:Name="FirstNameTextBox" FontSize="14" Background="White" Foreground="Black" Margin="0,5"
+                         IsReadOnly="True" Height="30" Padding="5"/>
+
+                <TextBlock Text="LastName:" FontSize="14" Foreground="White" Margin="0,5" />
+                <TextBox x:Name="LastNameTextBox" FontSize="14" Background="White" Foreground="Black" Margin="0,5"
+                         IsReadOnly="True" Height="30" Padding="5" />
+
+                <!-- Email -->
+                <TextBlock Text="Email:" FontSize="14" Foreground="White" Margin="0,5" />
+                <TextBox x:Name="EmailTextBox" FontSize="14" Background="White" Foreground="Black" Margin="0,5"
+                         IsReadOnly="True" Height="30" Padding="5" />
+
+                <!-- Telefon -->
+                <TextBlock Text="Phone Number:" FontSize="14" Foreground="White" Margin="0,5" />
+                <TextBox x:Name="PhoneTextBox" FontSize="14" Background="White" Foreground="Black" Margin="0,5"
+                         IsReadOnly="True" Height="30" Padding="5" />
+
+                <!-- Gen -->
+                <TextBlock Text="Genre:" FontSize="14" Foreground="White" Margin="0,5" />
+                <TextBox x:Name="GenreTextBox" FontSize="14" Background="White" Foreground="Black" Margin="0,5"
+                         IsReadOnly="True" Height="30" Padding="5" />
+
+                <!-- Butoane -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,20">
+                    <Button Content="Edit" Width="70" Height="30" Margin="5" Style="{StaticResource HoverButtonStyle}" 
+                            Click="EditProfile_Click" />
+                    <Button Content="Save" Width="70" Height="30" Margin="5" Style="{StaticResource HoverButtonStyle}"
+                            Click="SaveProfile_Click" IsEnabled="False" x:Name="SaveButton" />
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- Notificări -->
+        <Canvas HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,20,164,0" Width="40" Height="40">
+            <!-- Clopoțelul -->
+            <Button x:Name="NotificationBell" Width="40" Height="40" HorizontalAlignment="Right" VerticalAlignment="Top"
+            Background="Transparent" BorderBrush="Transparent" ToolTip="Check Notifications" 
+            Click="NotificationBell_Click" RenderTransformOrigin="0.71,0.436">
+                <StackPanel>
+                    <TextBlock Text="🔔" FontSize="16" Foreground="#FFD700"/>
+                </StackPanel>
+            </Button>
+
+            <!-- Badge-ul pentru notificări -->
+            <Ellipse x:Name="NotificationBadge" Width="20" Height="20" Fill="Red" Visibility="Collapsed"
+             Canvas.Right="0" Canvas.Top="17" />
+            <TextBlock x:Name="NotificationCount" Text="0" FontSize="12" FontWeight="Bold" Foreground="White"
+               Visibility="Collapsed" Canvas.Right="7" Canvas.Top="17" TextAlignment="Center" />
+
+            <!-- Popup-ul de notificări -->
+            <Popup x:Name="NotificationsPopup" PlacementTarget="{Binding ElementName=NotificationBell}" Placement="Bottom"
+           StaysOpen="False" IsOpen="False">
+                <Border Background="#2D2D3B" Padding="10" CornerRadius="10" Width="300">
+                    <StackPanel>
+                        <!-- Titlu -->
+                        <TextBlock Text="Notifications" FontSize="16" Foreground="White" Margin="0,0,0,10" />
+
+                        <!-- Lista notificărilor -->
+                        <ItemsControl x:Name="NotificationsList">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Background="White" CornerRadius="5" Margin="0,5">
+                                        <TextBlock Text="{Binding}" FontSize="14" Foreground="Black" Padding="5" />
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </Border>
+            </Popup>
+        </Canvas>
+
     </Grid>
 </Window>
+

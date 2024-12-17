@@ -6,66 +6,112 @@
         xmlns:local="clr-namespace:Proiect"
         mc:Ignorable="d"
         Title="Prices" Height="500" Width="800" 
-        Background="Black"
-        Icon="pack://application:,,,/Artemis .ico">
+        Background="#1E1E2E"
+        Icon="pack://application:,,,/Poze/Artemis .ico">
+    <Window.Resources>
+        <Style x:Key="WhiteTextStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+        </Style>
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#3E3E4F"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Height" Value="120"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Border Background="{TemplateBinding Background}" CornerRadius="10">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#5C5C7F"/>
+                    <Setter Property="Cursor" Value="Hand"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
     <Grid>
-        <Button x:Name="bt_coafor" Content="Hair" HorizontalAlignment="Left"  VerticalAlignment="Top" Click="bt_coafor_Click"
-                Style="{StaticResource RoundedButtonStyle}" Margin="69,106,0,0" Height="40" Width="90" RenderTransformOrigin="0.412,1.195"/>
-        <Button x:Name="bt_manicure" Content="Manicure" HorizontalAlignment="Left" Margin="523,105,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.928,0.483"
-                Style="{StaticResource RoundedButtonStyle}" Height="40" Width="90" Click="bt_manicure_Click"/>
-        <Button x:Name="bt_pedicure" Content="Pedicure" HorizontalAlignment="Left" Margin="672,106,0,0" VerticalAlignment="Top"
-                Style="{StaticResource RoundedButtonStyle}" Height="40" Width="90" Click="bt_pedicure_Click"/>
-        <Button x:Name="bt_beauty" Content="Beauty" HorizontalAlignment="Left" Margin="208,105,0,0" VerticalAlignment="Top" RenderTransformOrigin="3.18,4.17"
-                Style="{StaticResource RoundedButtonStyle}" Height="40" Width="90" Click="bt_beauty_Click"/>
-        <Button x:Name="bt_massage" Content="Massage" HorizontalAlignment="Left" Margin="368,105,0,0" VerticalAlignment="Top"
-                Style="{StaticResource RoundedButtonStyle}" Height="40" Width="90" Click="bt_massage_Click"/>
-        <ListView Name="listViewServicii" Margin="10,166,10,10" Background="Black" Foreground="White" BorderBrush="White" BorderThickness="1" d:ItemsSource="{d:SampleData ItemCount=5}">
+        <StackPanel x:Name="ServiceIconsPanel" Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10">
+            <WrapPanel x:Name="ServiceIcons" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10">
+                <Button Style="{StaticResource ButtonStyle}" Tag="Manicure" Click="bt_manicure_Click">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Image Source="Poze/manichiura.png" Width="60" Height="60" Margin="0,5,0,5"/>
+                        <TextBlock Text="Manicure" HorizontalAlignment="Center" Style="{StaticResource WhiteTextStyle}"/>
+                    </StackPanel>
+                </Button>
+                <Button Style="{StaticResource ButtonStyle}" Tag="Pedicure" Click="bt_pedicure_Click">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Image Source="Poze/pedichiura.png" Width="60" Height="60" Margin="0,5,0,5"/>
+                        <TextBlock Text="Pedicure" HorizontalAlignment="Center" Style="{StaticResource WhiteTextStyle}"/>
+                    </StackPanel>
+                </Button>
+                <Button Style="{StaticResource ButtonStyle}" Tag="Coafor" Click="bt_coafor_Click">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Image Source="Poze/coafor.png" Width="60" Height="60" Margin="0,5,0,5"/>
+                        <TextBlock Text="Coafor" HorizontalAlignment="Center" Style="{StaticResource WhiteTextStyle}"/>
+                    </StackPanel>
+                </Button>
+                <Button Style="{StaticResource ButtonStyle}" Tag="Beauty" Click="bt_beauty_Click">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Image Source="Poze/cosmetica.png" Width="60" Height="60" Margin="0,5,0,5"/>
+                        <TextBlock Text="Beauty" HorizontalAlignment="Center" Style="{StaticResource WhiteTextStyle}"/>
+                    </StackPanel>
+                </Button>
+                <Button Style="{StaticResource ButtonStyle}" Tag="Massage" Click="bt_massage_Click">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Image Source="Poze/masaj.png" Width="60" Height="60" Margin="0,5,0,5"/>
+                        <TextBlock Text="Massage" HorizontalAlignment="Center" Style="{StaticResource WhiteTextStyle}"/>
+                    </StackPanel>
+                </Button>
+            </WrapPanel>
+        </StackPanel>
+        <ListView Name="listViewServicii" Margin="10,206,10,10" Background="#1E1E2E" Foreground="White" BorderBrush="#3E3E4F" BorderThickness="1">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Service" DisplayMemberBinding="{Binding Key}" Width="700">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Key}" Style="{StaticResource WhiteTextStyle}"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Header="Price" DisplayMemberBinding="{Binding Value}" Width="50">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Value}" Style="{StaticResource WhiteTextStyle}"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
+                    <GridViewColumn Header="Service" DisplayMemberBinding="{Binding Key}" Width="700"/>
+                    <GridViewColumn Header="Price" DisplayMemberBinding="{Binding Value}" Width="50"/>
                 </GridView>
             </ListView.View>
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
-                    <Setter Property="Background" Value="Transparent" />
-                    <Setter Property="Foreground" Value="White" />
-                    <Setter Property="FontSize" Value="16" />
-                    <Setter Property="Margin" Value="5"/>
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="FontSize" Value="16"/>
                     <Setter Property="Padding" Value="10"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#3E3E4F"/>
+                        </Trigger>
+                    </Style.Triggers>
                 </Style>
             </ListView.ItemContainerStyle>
         </ListView>
-        <Button Click="BackButton_Click" RenderTransformOrigin="1.045,0.55" Margin="-58,11,751,433">
+        <Button Click="BackButton_Click" Margin="10,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource ButtonStyle}" RenderTransformOrigin="0.5,0.5" Height="61" Width="66">
             <Button.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
                     <SkewTransform/>
-                    <RotateTransform Angle="-180.353"/>
-                    <TranslateTransform X="-58.874" Y="-5.024"/>
+                    <RotateTransform Angle="-179.882"/>
+                    <TranslateTransform/>
                 </TransformGroup>
             </Button.RenderTransform>
-            <Button.Template>
-                <ControlTemplate TargetType="Button">
-                    <Grid>
-                        <Path Fill="Gold" Data="M 0 0 L 10 10 L 0 20 Z" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Grid>
-                </ControlTemplate>
-            </Button.Template>
+            <Path Fill="Gold" Data="M 0 0 L 10 10 L 0 20 Z" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Button>
-        <Image Source="Artemis.png" HorizontalAlignment="Left" Height="100" Margin="130,0,0,0" VerticalAlignment="Top" Width="155"/>
-
+        <Image Source="Poze/Artemis3.png" HorizontalAlignment="Left" Height="103" Margin="690,10,0,0" VerticalAlignment="Top" Width="100" Opacity="0.6">
+            <Image.Clip>
+                <EllipseGeometry Center="50,50" RadiusX="49" RadiusY="49"/>
+            </Image.Clip>
+        </Image>
     </Grid>
 </Window>
+

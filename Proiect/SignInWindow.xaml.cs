@@ -22,13 +22,14 @@ namespace Proiect
     /// </summary>
     public partial class SignInWindow : Window
     {
+        private SALONDataContext db;
         string connectionString = ConfigurationManager.ConnectionStrings["salon"].ToString();
         SqlConnection connection = new SqlConnection();
         int genre;//0-femeie, 1--barbat
         public SignInWindow()
         {
             InitializeComponent();
-            connection.ConnectionString = connectionString;
+            db = new SALONDataContext(connectionString);
         }
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
         {
@@ -85,71 +86,39 @@ namespace Proiect
         }
         private void CreateAccount(object sender, RoutedEventArgs e)
         {
-            connection.Open();
-            var checkCommand = connection.CreateCommand();
-            checkCommand.CommandType= CommandType.Text;
-            checkCommand.CommandText= "SELECT COUNT(1) FROM Clienti WHERE Email = @Email";
-            checkCommand.Parameters.AddWithValue("@Email", EmailInput.Text);
+            bool emailExists = db.Clientis.Any(client => client.Email == EmailInput.Text);
+
+            if (emailExists)
+            {
+                MessageBox.Show("An account with this email already exists. Please try a different email.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            var newClient = new Clienti
+            {
+                Nume = FirstNameInput.Text,
+                Prenume = LastNameInput.Text,
+                Email = EmailInput.Text,
+                Telefon = PhoneNumberInput.Text,
+                Parola = FirstPasswordInput.Password == SecondPasswordInput.Password
+                            ? FirstPasswordInput.Password
+                            : throw new InvalidOperationException("Passwords do not match."),
+                Gen = genre == 0 ? "F" : "M"
+            };
+
             try
             {
-                int emailExists = (int)checkCommand.ExecuteScalar();
+                db.Clientis.InsertOnSubmit(newClient);
+                db.SubmitChanges();
 
-                if (emailExists > 0)
-                {
-                    MessageBox.Show("An account with this email already exists. Please try a different email.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
-                }
-                else
-                {
-                    var insertCommand= connection.CreateCommand();
-                    insertCommand.CommandType= CommandType.Text;
-                    insertCommand.CommandText= "INSERT INTO Clienti (Nume, Prenume, Email, Telefon, Parola, Gen) VALUES (@Nume, @Prenume, @Email, @Telefon, @Parola, @Gen)";
-                    insertCommand.Parameters.AddWithValue("@Email", EmailInput.Text);
-                    insertCommand.Parameters.AddWithValue("@Nume", FirstNameInput.Text);
-                    insertCommand.Parameters.AddWithValue("@Prenume", LastNameInput.Text);
-                    insertCommand.Parameters.AddWithValue("@Telefon", PhoneNumberInput.Text);
-                    if(FirstPasswordInput.Password == SecondPasswordInput.Password)
-                    {
-                        insertCommand.Parameters.AddWithValue("@Parola", FirstPasswordInput.Password);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Failed to create account. Please try again. PASSWORDS DOESN'T MATCH", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                        connection.Close();
-                        return;
-                    }
-                    if(this.genre==0)
-                    {
-                        insertCommand.Parameters.AddWithValue("@Gen", "F");
-                    }
-                    else
-                    {
-                        insertCommand.Parameters.AddWithValue("@Gen", "M");
-                    }
-                    int rowsAffected = insertCommand.ExecuteNonQuery();
-
-                    if (rowsAffected > 0)
-                    {
-                        MessageBox.Show("Account created successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-                        connection.Close();
-                        this.Close();
-                       
-                    }
-                    else
-                    {
-                        MessageBox.Show("Failed to create account. Please try again.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                        connection.Close();
-                        return;
-                    }
-
-                }
+                MessageBox.Show("Account created successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                this.Close();
+                ClientWindow cw= new ClientWindow(newClient);
+                cw.Show();
             }
-            catch(SqlException ex)
+            catch (Exception ex)
             {
-                MessageBox.Show("Database error: " +ex.Message,
-                    "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Database error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
         }
 
         private void cb_woman_Checked(object sender, RoutedEventArgs e)

@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:Proiect"
         mc:Ignorable="d"
         Title="Artemis Beauty" Height="500" Width="800" 
-        Background="Black"
-        Icon="pack://application:,,,/Artemis .ico">
+        Background="#1E1E2E" 
+        Icon="pack://application:,,,/Poze/Artemis .ico">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -19,34 +19,72 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Image Grid.Column="0" Grid.Row="0" Source="Artemis.png" Grid.ColumnSpan="2" Margin="0,0,164,0" Height="157" VerticalAlignment="Top" Grid.RowSpan="2"/>
-        <!-- Title Section -->
+
+        <!-- Logo-ul rotund -->
+        <Image Grid.Column="2" Source="Poze/Artemis3.png" HorizontalAlignment="Left" VerticalAlignment="Center" 
+               Width="100" Height="100" Margin="137,0,0,0" Opacity="0.7">
+            <Image.Clip>
+                <EllipseGeometry Center="50,50" RadiusX="50" RadiusY="50"/>
+            </Image.Clip>
+        </Image>
+
+        <!-- Secțiunea de titlu -->
         <TextBlock Grid.Row="0" Grid.Column="1" Text="Welcome Back!" 
-           FontSize="32" FontWeight="Bold" 
-           Foreground="#333" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,40,0,0"/>
+                   FontSize="32" FontWeight="Bold" 
+                   Foreground="#FFD700" VerticalAlignment="Top" HorizontalAlignment="Center" 
+                   Margin="0,55,0,0" />
 
-        <!-- Login Form Section -->
-        <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="0,20,0,0">
-            <!-- Username Field -->
-            <Border Height="40" Width="160" Margin="0,10" BorderBrush="#D1D1D1" BorderThickness="1" Style="{StaticResource RoundedInputStyle}">
-                <TextBox x:Name="EmailInput" Padding="10" Background="#FFFFFF" FontSize="14" Foreground="#888" Text="Email"
-                 Tag="Email" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus"/>
-            </Border>
+        <!-- Secțiunea formularului de autentificare -->
+        <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,20,0,0">
+            <!-- Placeholder pentru Email -->
+            <Grid Height="50" Width="250" Margin="0,10">
+                <TextBox x:Name="EmailInput" FontSize="14" Background="#2E2E3E" Foreground="White"
+                         BorderBrush="#FFD700" BorderThickness="2" Padding="10" 
+                         VerticalContentAlignment="Center" Tag="Email" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" Text="Email">
+                </TextBox>
 
-            <!-- Password Field -->
-            <Border Height="40" Width="160" Margin="0,10" BorderBrush="#D1D1D1" BorderThickness="1" Style="{StaticResource RoundedInputStyle}">
-                <PasswordBox x:Name="PasswordInput" Padding="10" Background="#FFFFFF" FontSize="14" Foreground="#888" Password="Password"
-                     Tag="Password" GotFocus="PasswordBox_GotFocus" LostFocus="PasswordBox_LostFocus"/>
-            </Border>
+            </Grid>
 
-            <!-- Login Button -->
-            <Button Content="Log In" Height="40" Width="160" Margin="0,20,0,0"
-            FontSize="16" Style="{StaticResource RoundedButtonStyle}" Click="Click_getAccount"/>
+            <!-- Placeholder pentru Password -->
+            <Grid Height="50" Width="250" Margin="0,10">
+                <PasswordBox x:Name="PasswordInput" FontSize="14" Background="#2E2E3E" Foreground="White"
+                             BorderBrush="#FFD700" BorderThickness="2" Padding="10" 
+                             VerticalContentAlignment="Center" Tag="Password" GotFocus="PasswordBox_GotFocus" LostFocus="PasswordBox_LostFocus" Password="Password">
+                </PasswordBox>
+
+            </Grid>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 10, 0, 20">
+                <RadioButton x:Name="ClientRadioButton" Content="Client" Foreground="White" Margin="10,0" GroupName="Role" IsChecked="True"/>
+                <RadioButton x:Name="AdminRadioButton" Content="Admin" Foreground="White" Margin="10,0" GroupName="Role"/>
+                <RadioButton x:Name="StilistRadioButton" Content="Stilist" Foreground="White" Margin="10,0" GroupName="Role"/>
+            </StackPanel>
+
+
+            <!-- Buton de logare -->
+            <Button Content="Log In" Height="40" Width="250" Margin="0,20,0,0"
+                    FontSize="16" Background="#FFD700" Foreground="Black" 
+                    BorderBrush="Transparent" BorderThickness="0" Cursor="Hand" Click="Click_getAccount">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}" CornerRadius="10">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
         </StackPanel>
 
-        <!-- Footer Section -->
+        <!-- Secțiunea footer -->
         <TextBlock Grid.Row="2" Grid.Column="1" Text="Don't have an account? Sign Up"
-           FontSize="12" Foreground="#007AFF" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,20,0,0"
-           Cursor="Hand" MouseLeftButtonDown="CreateAccountButton_MouseLeftButtonDown"/>
+                   FontSize="12" Foreground="#FFD700" VerticalAlignment="Top" HorizontalAlignment="Center" 
+                   Margin="0,20,0,0" Cursor="Hand" MouseLeftButtonDown="CreateAccountButton_MouseLeftButtonDown"/>
     </Grid>
 </Window>
+

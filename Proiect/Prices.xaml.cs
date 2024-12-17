@@ -24,115 +24,56 @@ namespace Proiect
     /// </summary>
     public partial class Prices : Window
     {
-        string connectionString = ConfigurationManager.ConnectionStrings["salon"].ToString();
-        SqlConnection connection = new SqlConnection();
+        private SALONDataContext db = new SALONDataContext(); // Obiectul LINQ to SQL DataContext
         private Window _parentWindow;
+
         public Prices(Window parentWindow)
         {
             InitializeComponent();
             _parentWindow = parentWindow;
-            connection.ConnectionString = connectionString;
+            ServiceIconsPanel.Visibility= Visibility.Visible;
         }
+
+        private void LoadServiciiByCategorie(string categorie)
+        {
+            // Selectăm serviciile din tabelul "Servicii" cu categoria specificată
+            var servicii = from serviciu in db.Serviciis
+                            where serviciu.Categorie == categorie
+                            select new KeyValuePair<string, object>(serviciu.Denumire, serviciu.Pret);
+
+            ObservableCollection<KeyValuePair<string, object>> serviciiList = new ObservableCollection<KeyValuePair<string, object>>(servicii);
+            listViewServicii.ItemsSource = serviciiList;
+        }
+
         private void bt_coafor_Click(object sender, RoutedEventArgs e)
         {
-            connection.Open();
-            SqlCommand cmd=connection.CreateCommand();
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "select Denumire, Pret from Servicii where Categorie = 'Coafor'";
-            var dr=cmd.ExecuteReader();
-            ObservableCollection<KeyValuePair<string, object>> serviciiList = new ObservableCollection<KeyValuePair<string, object>>();
-            while (dr.Read())
-            {
-                string nume = dr["Denumire"].ToString();
-                decimal pret = Convert.ToDecimal(dr["Pret"]);
-                serviciiList.Add(new KeyValuePair<string, object>(nume, pret));
-            }
-
-            connection.Close();
-            listViewServicii.ItemsSource = serviciiList;
+            LoadServiciiByCategorie("Coafor");
         }
 
         private void bt_manicure_Click(object sender, RoutedEventArgs e)
         {
-            connection.Open();
-            SqlCommand cmd = connection.CreateCommand();
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "select Denumire, Pret from Servicii where Categorie = 'Manicure'";
-            var dr = cmd.ExecuteReader();
-            ObservableCollection<KeyValuePair<string, object>> serviciiList = new ObservableCollection<KeyValuePair<string, object>>();
-            while (dr.Read())
-            {
-                string nume = dr["Denumire"].ToString();
-                decimal pret = Convert.ToDecimal(dr["Pret"]);
-                serviciiList.Add(new KeyValuePair<string, object>(nume, pret));
-            }
-
-            connection.Close();
-            listViewServicii.ItemsSource = serviciiList;
+            LoadServiciiByCategorie("Manicure");
         }
 
         private void bt_pedicure_Click(object sender, RoutedEventArgs e)
         {
-            connection.Open();
-            SqlCommand cmd = connection.CreateCommand();
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "select Denumire, Pret from Servicii where Categorie = 'Pedicure'";
-            var dr = cmd.ExecuteReader();
-            ObservableCollection<KeyValuePair<string, object>> serviciiList = new ObservableCollection<KeyValuePair<string, object>>();
-            while (dr.Read())
-            {
-                string nume = dr["Denumire"].ToString();
-                decimal pret = Convert.ToDecimal(dr["Pret"]);
-                serviciiList.Add(new KeyValuePair<string, object>(nume, pret));
-            }
-
-            connection.Close();
-            listViewServicii.ItemsSource = serviciiList;
+            LoadServiciiByCategorie("Pedicure");
         }
 
         private void bt_beauty_Click(object sender, RoutedEventArgs e)
         {
-            connection.Open();
-            SqlCommand cmd = connection.CreateCommand();
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "select Denumire, Pret from Servicii where Categorie = 'Beauty'";
-            var dr = cmd.ExecuteReader();
-            ObservableCollection<KeyValuePair<string, object>> serviciiList = new ObservableCollection<KeyValuePair<string, object>>();
-            while (dr.Read())
-            {
-                string nume = dr["Denumire"].ToString();
-                decimal pret = Convert.ToDecimal(dr["Pret"]);
-                serviciiList.Add(new KeyValuePair<string, object>(nume, pret));
-            }
-
-            connection.Close();
-            listViewServicii.ItemsSource = serviciiList;
+            LoadServiciiByCategorie("Beauty");
         }
 
         private void bt_massage_Click(object sender, RoutedEventArgs e)
         {
-            connection.Open();
-            SqlCommand cmd = connection.CreateCommand();
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "select Denumire, Pret from Servicii where Categorie = 'Massage'";
-            var dr = cmd.ExecuteReader();
-            ObservableCollection<KeyValuePair<string, object>> serviciiList = new ObservableCollection<KeyValuePair<string, object>>();
-            while (dr.Read())
-            {
-                string nume = dr["Denumire"].ToString();
-                decimal pret = Convert.ToDecimal(dr["Pret"]);
-                serviciiList.Add(new KeyValuePair<string, object>(nume, pret));
-            }
-
-            connection.Close();
-            listViewServicii.ItemsSource = serviciiList;
+            LoadServiciiByCategorie("Massage");
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-           _parentWindow.Show();
+            _parentWindow.Show();
             this.Close();
         }
     }
-
 }

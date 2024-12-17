@@ -27,13 +27,13 @@ namespace Proiect
             InitializeComponent();
             _parentWindow = parentWindow;
             _allImages = new List<string>
-            {
-                "c1.png", "c2.png", "c3.png", "c4.png", "c5.png", "c6.png",
-                "c7.png", "c8.png", "c9.png", "c10.png", "c11.png", "c12.png",
-                "c13.png", "c14.png", "b1.png", "b2.png", "b3.png", "b4.png",
-                "b5.png", "b6.png", "u1.png", "u2.png", "u3.png", "u4.png",
-                "u5.png", "u6.png", "u7.png", "u8.png", "u9.png"
-            };
+                {
+                  "c1.png", "c2.png", "c3.png", "c4.png", "c5.png", "c6.png",
+                   "c7.png", "c8.png", "c9.png", "c10.png", "c11.png", "c12.png",
+                   "c13.png", "c14.png", "b1.png", "b2.png", "b3.png", "b4.png",
+                   "b5.png", "b6.png", "u1.png", "u2.png", "u3.png", "u4.png",
+                   "u5.png", "u6.png", "u7.png", "u8.png", "u9.png"
+                };
         }
 
         private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -43,20 +43,29 @@ namespace Proiect
                 if (image.Source != null)
                 {
                     if (!(image.Source is BitmapImage))
-                    { 
+                    {
                         Uri uri = new Uri(image.Source.ToString(), UriKind.RelativeOrAbsolute);
                         image.Source = new BitmapImage(uri);
                     }
 
                     if (image.Source is BitmapImage bitmapImage)
                     {
-                        string imageName = System.IO.Path.GetFileName(bitmapImage.UriSource.ToString());
+                        string fullPath = bitmapImage.UriSource.ToString();
+                        string imageName = fullPath.Substring(fullPath.LastIndexOf('/') + 1);
                         _currentIndex = _allImages.IndexOf(imageName);
-
-                        if (_currentIndex >= 0)
+                        if(_currentIndex >=0)
                         {
-                            ShowOverlay();
-                            DisplayImage();
+                            string imagePath = "Poze/" + _allImages[_currentIndex];
+
+                            if (!string.IsNullOrEmpty(imagePath))
+                            {
+                                ShowOverlay();
+                                DisplayImage(imagePath); 
+                            }
+                            else
+                            {
+                                MessageBox.Show($"Imaginea {imageName} nu a fost găsită.");
+                            }
                         }
                         else
                         {
@@ -89,11 +98,12 @@ namespace Proiect
             ImageOverlay.Visibility = Visibility.Collapsed;
         }
 
-        private void DisplayImage()
+        private void DisplayImage(string imagePath)
         {
             if (_currentIndex >= 0 && _currentIndex < _allImages.Count)
             {
-                LargeImage.Source = new BitmapImage(new Uri(_allImages[_currentIndex], UriKind.Relative));
+                string fullImagePath = "pack://application:,,,/Proiect;component/" + imagePath;
+                LargeImage.Source = new BitmapImage(new Uri(fullImagePath, UriKind.Absolute));
             }
         }
 
@@ -105,13 +115,15 @@ namespace Proiect
         private void PrevButton_Click(object sender, RoutedEventArgs e)
         {
             _currentIndex = (_currentIndex - 1 + _allImages.Count) % _allImages.Count;
-            DisplayImage();
+            string imagePath = "Poze/" + _allImages[_currentIndex];
+            DisplayImage(imagePath);
         }
 
         private void NextButton_Click(object sender, RoutedEventArgs e)
         {
             _currentIndex = (_currentIndex + 1) % _allImages.Count;
-            DisplayImage();
+            string imagePath = "Poze/" + _allImages[_currentIndex];
+            DisplayImage(imagePath);
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
